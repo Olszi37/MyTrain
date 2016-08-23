@@ -1,4 +1,4 @@
-package com.olszi.model;
+package com.olszi.model.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

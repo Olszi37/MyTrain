@@ -1,7 +1,6 @@
 package com.olszi.service;
 
-import com.olszi.model.User;
-import com.olszi.model.UserAuth;
+import com.olszi.model.user.User;
 
 import java.util.List;
 

@@ -1,11 +1,9 @@
 package com.olszi.service;
 
 import com.olszi.DAO.UserDAO;
-import com.olszi.model.User;
-import com.olszi.model.UserAuth;
+import com.olszi.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.olszi.model;
+package com.olszi.model.user;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

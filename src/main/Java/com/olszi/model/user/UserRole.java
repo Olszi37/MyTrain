@@ -1,4 +1,4 @@
-package com.olszi.model;
+package com.olszi.model.user;
 
 /**
  * Created by MOlszi on 2016-08-23.

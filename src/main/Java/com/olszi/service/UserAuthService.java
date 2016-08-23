@@ -1,6 +1,6 @@
 package com.olszi.service;
 
-import com.olszi.model.UserAuth;
+import com.olszi.model.user.UserAuth;
 
 /**
  * Created by MOlszi on 2016-08-23.

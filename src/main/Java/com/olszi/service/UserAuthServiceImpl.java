@@ -1,7 +1,7 @@
 package com.olszi.service;
 
 import com.olszi.DAO.UserAuthDAO;
-import com.olszi.model.UserAuth;
+import com.olszi.model.user.UserAuth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
