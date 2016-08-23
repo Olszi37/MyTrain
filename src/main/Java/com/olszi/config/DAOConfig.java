@@ -1,7 +1,11 @@
 package com.olszi.config;
 
+import com.olszi.DAO.UserAuthDAO;
+import com.olszi.DAO.UserAuthDAOImpl;
 import com.olszi.DAO.UserDAO;
 import com.olszi.DAO.UserDAOImpl;
+import com.olszi.service.UserAuthService;
+import com.olszi.service.UserAuthServiceImpl;
 import com.olszi.service.UserService;
 import com.olszi.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +32,15 @@ public class DAOConfig {
     @Bean
     public UserService userService(){
         return new UserServiceImpl(userDAO());
+    }
+
+    @Bean
+    public UserAuthDAO userAuthDAO(){
+        return new UserAuthDAOImpl(hibernateConfig.sessionFactory().getObject());
+    }
+
+    @Bean
+    public UserAuthService userAuthService(){
+        return new UserAuthServiceImpl(userAuthDAO());
     }
 }

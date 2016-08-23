@@ -23,16 +23,13 @@ public class UserDAOImpl implements UserDAO {
         this.sessionFactory = sessionFactory;
     }
 
+    @Override
     @Transactional
     public void create(User user) {
         sessionFactory.getCurrentSession().save(user);
     }
 
-    @Transactional
-    public Long createUserAuth(UserAuth userAuth){
-        return (Long) sessionFactory.getCurrentSession().save(userAuth);
-    }
-
+    @Override
     public List<User> getAll() {
         return null;
     }

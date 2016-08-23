@@ -74,11 +74,15 @@ public class UserAuth {
         return created;
     }
 
+    public void setCreated(){
+        created = LocalDateTime.now();
+    }
+
     public LocalDateTime getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
-        this.modified = modified;
+    public void setModified() {
+        modified = LocalDateTime.now();
     }
 }
