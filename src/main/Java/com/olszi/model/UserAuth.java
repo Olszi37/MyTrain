@@ -76,6 +76,7 @@ public class UserAuth {
 
     public void setCreated(){
         created = LocalDateTime.now();
+        modified = created;
     }
 
     public LocalDateTime getModified() {

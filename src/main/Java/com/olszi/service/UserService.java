@@ -12,7 +12,5 @@ public interface UserService {
 
     public void create(User user);
 
-    public Long createUserAuth(UserAuth userAuth);
-
     public List<User> getAll();
 }

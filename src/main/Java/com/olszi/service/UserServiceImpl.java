@@ -27,10 +27,6 @@ public class UserServiceImpl implements UserService {
         userDAO.create(user);
     }
 
-    public Long createUserAuth(UserAuth userAuth){
-        return userDAO.createUserAuth(userAuth);
-    }
-
     public List<User> getAll() {
         return null;
     }
