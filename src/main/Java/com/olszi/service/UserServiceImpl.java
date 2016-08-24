@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getByEmail(String email) {
-        return null;
+        return userDAO.getByEmail(email);
     }
 
     @Override

@@ -59,4 +59,13 @@ public class UserController {
 
         return user;
     }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public void delete(HttpServletRequest httpServletRequest){
+
+        Long id = (long) httpServletRequest.getIntHeader("id");
+        User user = userService.getById(id);
+
+        userService.delete(user);
+    }
 }
