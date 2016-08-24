@@ -1,6 +1,7 @@
 package com.olszi.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -10,4 +11,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "trainset")
 public class Trainset {
+
+    @Id
+    private String trainsetID;
+
+
 }
