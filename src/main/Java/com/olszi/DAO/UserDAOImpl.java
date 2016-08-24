@@ -29,7 +29,22 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public List<User> getAll() {
+    public User getById(Long id) {
+        return sessionFactory.getCurrentSession().get(User.class, id);
+    }
+
+    @Override
+    public User getByEmail(String email) {
         return null;
+    }
+
+    @Override
+    public void delete(User user) {
+        sessionFactory.getCurrentSession().delete(user);
+    }
+
+    @Override
+    public List<User> getAll() {
+        return sessionFactory.getCurrentSession().createQuery("FROM user", User.class).getResultList();
     }
 }
