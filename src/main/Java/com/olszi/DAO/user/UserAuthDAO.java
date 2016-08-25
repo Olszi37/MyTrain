@@ -1,4 +1,4 @@
-package com.olszi.DAO;
+package com.olszi.DAO.user;
 
 import com.olszi.model.user.UserAuth;
 

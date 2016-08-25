@@ -1,7 +1,6 @@
 package com.olszi.model.carriage;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by MOlszi on 2016-08-24.
@@ -25,14 +24,10 @@ public class Carriage {
     @Column(name = "type")
     private CarriageType type;
 
-    //IDK co wstawic
-    private List<CarriageFeatures> features;
-
-    public Carriage(Long trainsetID, int number, CarriageType type, List<CarriageFeatures> features) {
+    public Carriage(Long trainsetID, int number, CarriageType type) {
         this.trainsetID = trainsetID;
         this.number = number;
         this.type = type;
-        this.features = features;
     }
 
     public Carriage() {
@@ -66,11 +61,4 @@ public class Carriage {
         this.type = type;
     }
 
-    public List<CarriageFeatures> getFeatures() {
-        return features;
-    }
-
-    public void setFeatures(List<CarriageFeatures> features) {
-        this.features = features;
-    }
 }

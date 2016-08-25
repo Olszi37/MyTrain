@@ -1,9 +1,9 @@
 package com.olszi.config;
 
-import com.olszi.DAO.UserAuthDAO;
-import com.olszi.DAO.UserAuthDAOImpl;
-import com.olszi.DAO.UserDAO;
-import com.olszi.DAO.UserDAOImpl;
+import com.olszi.DAO.user.UserAuthDAO;
+import com.olszi.DAO.user.UserAuthDAOImpl;
+import com.olszi.DAO.user.UserDAO;
+import com.olszi.DAO.user.UserDAOImpl;
 import com.olszi.service.UserAuthService;
 import com.olszi.service.UserAuthServiceImpl;
 import com.olszi.service.UserService;

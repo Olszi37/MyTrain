@@ -1,4 +1,4 @@
-package com.olszi.DAO;
+package com.olszi.DAO.user;
 
 import com.olszi.model.user.User;
 import org.hibernate.SessionFactory;
@@ -13,6 +13,7 @@ import java.util.List;
  */
 
 @Repository
+@Transactional
 public class UserDAOImpl implements UserDAO {
 
     private SessionFactory sessionFactory;
@@ -23,7 +24,6 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    @Transactional
     public void create(User user) {
         sessionFactory.getCurrentSession().save(user);
     }
