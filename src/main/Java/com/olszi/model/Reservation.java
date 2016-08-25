@@ -1,6 +1,8 @@
 package com.olszi.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Created by MOlszi on 2016-08-24.
@@ -15,12 +17,23 @@ public class Reservation {
     @Column(name = "reservationID")
     private Long id;
 
-    @ManyToOne
     @Column(name = "userID")
     private Long userID;
 
-    @ManyToOne
     @Column(name = "trainsetID")
     private String trainsetID;
 
+    private Long courseID;
+
+    private Long paymentID;
+
+    private String name;
+
+    private String email;
+
+    private LocalDateTime departure;
+
+    private int carriageNumber;
+
+    private List<Integer> seat;
 }

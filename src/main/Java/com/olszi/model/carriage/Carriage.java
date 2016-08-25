@@ -17,7 +17,6 @@ public class Carriage {
     private Long carriageId;
 
     @Column(name = "trainsetID")
-    @ManyToOne
     private Long trainsetID;
 
     @Column(name = "number")
@@ -28,4 +27,50 @@ public class Carriage {
 
     //IDK co wstawic
     private List<CarriageFeatures> features;
+
+    public Carriage(Long trainsetID, int number, CarriageType type, List<CarriageFeatures> features) {
+        this.trainsetID = trainsetID;
+        this.number = number;
+        this.type = type;
+        this.features = features;
+    }
+
+    public Carriage() {
+    }
+
+    public Long getCarriageId() {
+        return carriageId;
+    }
+
+    public Long getTrainsetID() {
+        return trainsetID;
+    }
+
+    public void setTrainsetID(Long trainsetID) {
+        this.trainsetID = trainsetID;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public CarriageType getType() {
+        return type;
+    }
+
+    public void setType(CarriageType type) {
+        this.type = type;
+    }
+
+    public List<CarriageFeatures> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(List<CarriageFeatures> features) {
+        this.features = features;
+    }
 }
