@@ -1,13 +1,17 @@
 package com.olszi.config;
 
+import com.olszi.DAO.TrainsetDAO;
+import com.olszi.DAO.TrainsetDAOImpl;
 import com.olszi.DAO.user.UserAuthDAO;
 import com.olszi.DAO.user.UserAuthDAOImpl;
 import com.olszi.DAO.user.UserDAO;
 import com.olszi.DAO.user.UserDAOImpl;
-import com.olszi.service.UserAuthService;
-import com.olszi.service.UserAuthServiceImpl;
-import com.olszi.service.UserService;
-import com.olszi.service.UserServiceImpl;
+import com.olszi.service.TrainsetService;
+import com.olszi.service.TrainsetServiceImpl;
+import com.olszi.service.user.UserAuthService;
+import com.olszi.service.user.UserAuthServiceImpl;
+import com.olszi.service.user.UserService;
+import com.olszi.service.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -42,5 +46,15 @@ public class DAOConfig {
     @Bean
     public UserAuthService userAuthService(){
         return new UserAuthServiceImpl(userAuthDAO());
+    }
+
+    @Bean
+    public TrainsetDAO trainsetDAO(){
+        return new TrainsetDAOImpl(hibernateConfig.sessionFactory().getObject());
+    }
+
+    @Bean
+    public TrainsetService trainsetService(){
+        return new TrainsetServiceImpl(trainsetDAO());
     }
 }
