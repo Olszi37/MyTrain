@@ -1,8 +1,6 @@
 package com.olszi.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by MOlszi on 2016-08-24.
@@ -13,7 +11,13 @@ import javax.persistence.Table;
 public class Trainset {
 
     @Id
-    private String trainsetID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "trainsetID")
+    private Long trainsetID;
 
+    @Column(name = "name")
+    private String name;
 
+    @Column(name = "nickname")
+    private String nickname;
 }
