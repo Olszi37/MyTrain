@@ -1,13 +1,17 @@
 package com.olszi.config;
 
-import com.olszi.DAO.TrainsetDAO;
-import com.olszi.DAO.TrainsetDAOImpl;
+import com.olszi.DAO.carriage.CarriageDAO;
+import com.olszi.DAO.carriage.CarriageDAOImpl;
+import com.olszi.DAO.trainset.TrainsetDAO;
+import com.olszi.DAO.trainset.TrainsetDAOImpl;
 import com.olszi.DAO.user.UserAuthDAO;
 import com.olszi.DAO.user.UserAuthDAOImpl;
 import com.olszi.DAO.user.UserDAO;
 import com.olszi.DAO.user.UserDAOImpl;
-import com.olszi.service.TrainsetService;
-import com.olszi.service.TrainsetServiceImpl;
+import com.olszi.service.carriage.CarriageService;
+import com.olszi.service.carriage.CarriageServiceImpl;
+import com.olszi.service.trainset.TrainsetService;
+import com.olszi.service.trainset.TrainsetServiceImpl;
 import com.olszi.service.user.UserAuthService;
 import com.olszi.service.user.UserAuthServiceImpl;
 import com.olszi.service.user.UserService;
@@ -56,5 +60,15 @@ public class DAOConfig {
     @Bean
     public TrainsetService trainsetService(){
         return new TrainsetServiceImpl(trainsetDAO());
+    }
+
+    @Bean
+    public CarriageDAO carriageDAO(){
+        return new CarriageDAOImpl(hibernateConfig.sessionFactory().getObject());
+    }
+
+    @Bean
+    public CarriageService carriageService(){
+        return new CarriageServiceImpl(carriageDAO());
     }
 }

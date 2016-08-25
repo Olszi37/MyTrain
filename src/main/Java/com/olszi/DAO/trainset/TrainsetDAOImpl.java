@@ -1,4 +1,4 @@
-package com.olszi.DAO;
+package com.olszi.DAO.trainset;
 
 import com.olszi.model.Trainset;
 import org.hibernate.SessionFactory;

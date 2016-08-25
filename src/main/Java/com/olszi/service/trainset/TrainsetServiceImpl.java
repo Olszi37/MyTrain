@@ -1,6 +1,6 @@
-package com.olszi.service;
+package com.olszi.service.trainset;
 
-import com.olszi.DAO.TrainsetDAO;
+import com.olszi.DAO.trainset.TrainsetDAO;
 import com.olszi.model.Trainset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

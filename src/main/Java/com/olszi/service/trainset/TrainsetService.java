@@ -1,4 +1,4 @@
-package com.olszi.DAO;
+package com.olszi.service.trainset;
 
 import com.olszi.model.Trainset;
 
@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by MOlszi on 2016-08-25.
  */
-public interface TrainsetDAO {
+public interface TrainsetService {
 
     public Long create(Trainset trainset);
 
