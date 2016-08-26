@@ -54,7 +54,7 @@ public class UserController {
 
         user.setId(id);
         user.setName(httpServletRequest.getHeader("name"));
-        user.setLastName(httpServletRequest.getHeader("lastName"));
+        user.setSurname(httpServletRequest.getHeader("surname"));
         user.setEmail(httpServletRequest.getHeader("email"));
 
         return user;

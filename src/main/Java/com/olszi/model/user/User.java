@@ -20,16 +20,16 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "lastName")
-    private String lastName;
+    @Column(name = "surname")
+    private String surname;
 
     @Column(name = "email")
     private String email;
 
-    public User(Long id, String name, String lastName, String email) {
+    public User(Long id, String name, String surname, String email) {
         this.id = id;
         this.name = name;
-        this.lastName = lastName;
+        this.surname = surname;
         this.email = email;
     }
 
@@ -52,12 +52,12 @@ public class User {
         this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getEmail() {
