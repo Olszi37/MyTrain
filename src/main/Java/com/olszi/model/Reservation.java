@@ -1,11 +1,10 @@
 package com.olszi.model;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.List;
+import java.time.LocalDate;
 
 /**
- * Created by MOlszi on 2016-08-24.
+ * Created by MOlszi on 2016-08-31.
  */
 
 @Entity
@@ -15,25 +14,127 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reservationID")
-    private Long id;
+    private Long reservationID;
 
-    @Column(name = "userID")
-    private Long userID;
+    @ManyToOne(targetEntity = User.class)
+    @Column(name = "user")
+    private User user;
 
-    @Column(name = "trainsetID")
-    private String trainsetID;
-
-    private Long courseID;
-
-    private Long paymentID;
-
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "email")
     private String email;
 
-    private LocalDateTime departure;
+    @ManyToOne(targetEntity = Station.class)
+    @Column(name = "initialStop")
+    private Station initialStop;
 
-    private int carriageNumber;
+    @ManyToOne(targetEntity = Station.class)
+    @Column(name = "finalStop")
+    private Station finalStop;
 
-    private List<Integer> seat;
+    @Column(name = "departureDate")
+    private LocalDate departureDate;
+
+    @Column(name = "personCount")
+    private int personCount;
+
+    @Column(name = "class")
+    private ClassType classType;
+
+    @ManyToOne(targetEntity = Payment.class)
+    @Column(name = "payment")
+    private Payment payment;
+
+    public Reservation(User user, String name, String email, Station initialStop, Station finalStop, LocalDate departureDate, int personCount, ClassType classType, Payment payment) {
+        this.user = user;
+        this.name = name;
+        this.email = email;
+        this.initialStop = initialStop;
+        this.finalStop = finalStop;
+        this.departureDate = departureDate;
+        this.personCount = personCount;
+        this.classType = classType;
+        this.payment = payment;
+    }
+
+    public Reservation() {
+    }
+
+    public Long getReservationID() {
+        return reservationID;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Station getInitialStop() {
+        return initialStop;
+    }
+
+    public void setInitialStop(Station initialStop) {
+        this.initialStop = initialStop;
+    }
+
+    public Station getFinalStop() {
+        return finalStop;
+    }
+
+    public void setFinalStop(Station finalStop) {
+        this.finalStop = finalStop;
+    }
+
+    public LocalDate getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(LocalDate departureDate) {
+        this.departureDate = departureDate;
+    }
+
+    public int getPersonCount() {
+        return personCount;
+    }
+
+    public void setPersonCount(int personCount) {
+        this.personCount = personCount;
+    }
+
+    public ClassType getClassType() {
+        return classType;
+    }
+
+    public void setClassType(ClassType classType) {
+        this.classType = classType;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
 }

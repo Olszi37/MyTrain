@@ -1,21 +1,19 @@
-package com.olszi.model.user;
+package com.olszi.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
- * Created by MOlszi on 2016-08-19.
+ * Created by MOlszi on 2016-08-31.
  */
 
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "userDetails")
+public class UserDetails {
 
-    @Column(name = "userID")
     @Id
-    private Long id;
+    @Column(name = "userID")
+    @OneToOne(targetEntity = User.class)
+    private User user;
 
     @Column(name = "name")
     private String name;
@@ -26,22 +24,22 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    public User(Long id, String name, String surname, String email) {
-        this.id = id;
+    public UserDetails(User user, String name, String surname, String email) {
+        this.user = user;
         this.name = name;
         this.surname = surname;
         this.email = email;
     }
 
-    public User() {
+    public UserDetails() {
     }
 
-    public Long getId() {
-        return id;
+    public User getUser() {
+        return user;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getName() {

@@ -1,10 +1,12 @@
-package com.olszi.model.payment;
+package com.olszi.model;
+
+import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
 
 /**
- * Created by MOlszi on 2016-08-24.
+ * Created by MOlszi on 2016-08-31.
  */
 
 @Entity
@@ -16,8 +18,8 @@ public class Payment {
     @Column(name = "paymentID")
     private Long paymentID;
 
-    @Column(name = "time")
-    private LocalDateTime time;
+    @Column(name = "cost")
+    private BigDecimal cost;
 
     @Column(name = "type")
     private PaymentType type;
@@ -25,8 +27,8 @@ public class Payment {
     @Column(name = "status")
     private PaymentStatus status;
 
-    public Payment(LocalDateTime time, PaymentType type, PaymentStatus status) {
-        this.time = time;
+    public Payment(BigDecimal cost, PaymentType type, PaymentStatus status) {
+        this.cost = cost;
         this.type = type;
         this.status = status;
     }
@@ -38,12 +40,12 @@ public class Payment {
         return paymentID;
     }
 
-    public LocalDateTime getTime() {
-        return time;
+    public BigDecimal getCost() {
+        return cost;
     }
 
-    public void setTime(LocalDateTime time) {
-        this.time = time;
+    public void setCost(BigDecimal cost) {
+        this.cost = cost;
     }
 
     public PaymentType getType() {

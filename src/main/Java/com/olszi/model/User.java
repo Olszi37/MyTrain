@@ -1,20 +1,19 @@
-package com.olszi.model.user;
+package com.olszi.model;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 /**
- * Created by MOlszi on 2016-08-23.
+ * Created by MOlszi on 2016-08-31.
  */
 
 @Entity
-@Table(name = "userAuth")
-public class UserAuth {
+@Table(name = "user")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userID")
-    private Long id;
+    private Long userID;
 
     @Column(name = "login")
     private String login;
@@ -25,25 +24,17 @@ public class UserAuth {
     @Column(name = "role")
     private UserRole role;
 
-    @Column(name = "created")
-    private LocalDateTime created;
-
-    @Column(name = "modified")
-    private LocalDateTime modified;
-
-    public UserAuth(String login, String password, UserRole role) {
+    public User(String login, String password, UserRole role) {
         this.login = login;
         this.password = password;
         this.role = role;
-        created = LocalDateTime.now();
-        modified = created;
     }
 
-    public UserAuth() {
+    public User() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getUserID() {
+        return userID;
     }
 
     public String getLogin() {
@@ -68,22 +59,5 @@ public class UserAuth {
 
     public void setRole(UserRole role) {
         this.role = role;
-    }
-
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
-    public void setCreated(){
-        created = LocalDateTime.now();
-        modified = created;
-    }
-
-    public LocalDateTime getModified() {
-        return modified;
-    }
-
-    public void setModified() {
-        modified = LocalDateTime.now();
     }
 }

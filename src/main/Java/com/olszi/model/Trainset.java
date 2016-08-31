@@ -3,7 +3,7 @@ package com.olszi.model;
 import javax.persistence.*;
 
 /**
- * Created by MOlszi on 2016-08-24.
+ * Created by MOlszi on 2016-08-31.
  */
 
 @Entity

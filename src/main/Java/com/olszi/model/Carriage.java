@@ -1,9 +1,9 @@
-package com.olszi.model.carriage;
+package com.olszi.model;
 
 import javax.persistence.*;
 
 /**
- * Created by MOlszi on 2016-08-24.
+ * Created by MOlszi on 2016-08-31.
  */
 
 @Entity
@@ -13,10 +13,11 @@ public class Carriage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "carriageID")
-    private Long carriageId;
+    private Long carriageID;
 
-    @Column(name = "trainsetID")
-    private Long trainsetID;
+    @ManyToOne(targetEntity = Trainset.class)
+    @Column(name = "trainset")
+    private Trainset trainset;
 
     @Column(name = "number")
     private int number;
@@ -24,8 +25,8 @@ public class Carriage {
     @Column(name = "type")
     private CarriageType type;
 
-    public Carriage(Long trainsetID, int number, CarriageType type) {
-        this.trainsetID = trainsetID;
+    public Carriage(Trainset trainset, int number, CarriageType type) {
+        this.trainset = trainset;
         this.number = number;
         this.type = type;
     }
@@ -33,16 +34,16 @@ public class Carriage {
     public Carriage() {
     }
 
-    public Long getCarriageId() {
-        return carriageId;
+    public Long getCarriageID() {
+        return carriageID;
     }
 
-    public Long getTrainsetID() {
-        return trainsetID;
+    public Trainset getTrainset() {
+        return trainset;
     }
 
-    public void setTrainsetID(Long trainsetID) {
-        this.trainsetID = trainsetID;
+    public void setTrainset(Trainset trainset) {
+        this.trainset = trainset;
     }
 
     public int getNumber() {
@@ -60,5 +61,4 @@ public class Carriage {
     public void setType(CarriageType type) {
         this.type = type;
     }
-
 }
