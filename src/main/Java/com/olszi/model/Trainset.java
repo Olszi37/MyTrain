@@ -1,6 +1,7 @@
 package com.olszi.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by MOlszi on 2016-08-31.
@@ -8,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "trainset")
-public class Trainset {
+public class Trainset implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

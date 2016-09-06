@@ -1,6 +1,7 @@
 package com.olszi.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by MOlszi on 2016-08-31.
@@ -8,11 +9,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "userDetails")
-public class UserDetails {
+public class UserDetails implements Serializable{
 
     @Id
-    @Column(name = "userID")
     @OneToOne(targetEntity = User.class)
+    @JoinColumn(name = "userID")
     private User user;
 
     @Column(name = "name")

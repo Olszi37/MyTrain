@@ -1,6 +1,7 @@
 package com.olszi.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by MOlszi on 2016-08-31.
@@ -8,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "carriage")
-public class Carriage {
+public class Carriage implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +17,6 @@ public class Carriage {
     private Long carriageID;
 
     @ManyToOne(targetEntity = Trainset.class)
-    @Column(name = "trainset")
     private Trainset trainset;
 
     @Column(name = "number")

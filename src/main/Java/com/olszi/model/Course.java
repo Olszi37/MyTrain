@@ -1,6 +1,7 @@
 package com.olszi.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalTime;
 
 /**
@@ -9,7 +10,7 @@ import java.time.LocalTime;
 
 @Entity
 @Table(name = "course")
-public class Course {
+public class Course implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,18 +18,15 @@ public class Course {
     private Long courseID;
 
     @ManyToOne(targetEntity = Station.class)
-    @Column(name = "from")
     private Station from;
 
     @ManyToOne(targetEntity = Station.class)
-    @Column(name = "destiny")
     private Station destiny;
 
     @Column(name = "departure")
     private LocalTime departure;
 
     @ManyToOne(targetEntity = Trainset.class)
-    @Column(name = "trainset")
     private Trainset trainset;
 
     public Course(Station from, Station destiny, LocalTime departure, Trainset trainset) {

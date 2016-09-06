@@ -1,6 +1,7 @@
 package com.olszi.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalTime;
 
 /**
@@ -9,7 +10,7 @@ import java.time.LocalTime;
 
 @Entity
 @Table(name = "routePoint")
-public class RoutePoint {
+public class RoutePoint implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,11 +18,9 @@ public class RoutePoint {
     private Long pointID;
 
     @ManyToOne(targetEntity = Course.class)
-    @Column(name = "course")
     private Course course;
 
     @ManyToOne(targetEntity = Station.class)
-    @Column(name = "station")
     private Station station;
 
     @Column(name = "estimatedTimeArrival")

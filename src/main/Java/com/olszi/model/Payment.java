@@ -1,8 +1,7 @@
 package com.olszi.model;
 
-import com.sun.istack.internal.NotNull;
-
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -11,7 +10,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "payment")
-public class Payment {
+public class Payment implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
