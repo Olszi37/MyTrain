@@ -12,7 +12,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     }
 
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[] {DAOConfig.class};
+        return null;
     }
 
     protected String[] getServletMappings() {

@@ -1,6 +1,7 @@
 package com.olszi.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import java.io.IOException;
 import java.util.Properties;
 
 /**
@@ -42,7 +44,7 @@ public class HibernateConfig {
     }
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory(){
+    public SessionFactory sessionFactory() throws IOException {
         LocalSessionFactoryBean bean = new LocalSessionFactoryBean();
 
         bean.setDataSource(dataSource());
@@ -54,13 +56,14 @@ public class HibernateConfig {
         hibernateProperties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
 
         bean.setHibernateProperties(hibernateProperties);
-        return bean;
+        bean.afterPropertiesSet();
+        return bean.getObject();
     }
 
     @Bean
-    public HibernateTransactionManager hibernateTransactionManager(){
+    public HibernateTransactionManager hibernateTransactionManager() throws IOException {
         HibernateTransactionManager bean = new HibernateTransactionManager();
-        bean.setSessionFactory(sessionFactory().getObject());
+        bean.setSessionFactory(sessionFactory());
 
         return bean;
     }
