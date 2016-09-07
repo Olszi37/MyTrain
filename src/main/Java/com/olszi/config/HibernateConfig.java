@@ -51,9 +51,10 @@ public class HibernateConfig {
         bean.setPackagesToScan("com.olszi.model");
 
         Properties hibernateProperties = new Properties();
-        hibernateProperties.put("hibernate.showSql", env.getProperty("hibernate.showSql"));
+        hibernateProperties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
         hibernateProperties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
         hibernateProperties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
+        hibernateProperties.put("hibernate.default_schema", env.getProperty("hibernate.schema"));
 
         bean.setHibernateProperties(hibernateProperties);
         bean.afterPropertiesSet();
