@@ -5,6 +5,8 @@ import com.olszi.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by MOlszi on 2016-08-31.
  */
@@ -32,5 +34,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public void delete(UserDetails userDetails) {
         userDetailsDAO.delete(userDetails);
+    }
+
+    @Override
+    public UserDetails getById(Long id) {
+        return userDetailsDAO.getById(id);
+    }
+
+    @Override
+    public List<UserDetails> findByEmail(String email) {
+        return userDetailsDAO.findByEmail(email);
     }
 }

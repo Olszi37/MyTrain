@@ -8,8 +8,10 @@ import com.olszi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 
 /**
@@ -58,4 +60,16 @@ public class UserController {
 
         return userDetails;
     }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public @ResponseBody UserDetails get(HttpServletRequest httpServletRequest){
+        Long id = new Long(httpServletRequest.getHeader("id"));
+
+        return userDetailsService.getById(id);
+    }
+
+    @RequestMapping(value = "find", method = RequestMethod.GET)
+    public @ResponseBody List<UserDetails> findByEmail(HttpServletRequest httpServletRequest){
+        return userDetailsService.findByEmail(httpServletRequest.getHeader("email"));
+    } // return void table
 }

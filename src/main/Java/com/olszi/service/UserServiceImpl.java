@@ -5,6 +5,8 @@ import com.olszi.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by MOlszi on 2016-08-31.
  */
@@ -32,5 +34,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(User user) {
         userDAO.delete(user);
+    }
+
+    @Override
+    public User getById(Long id) {
+        return userDAO.getById(id);
+    }
+
+    @Override
+    public List<User> findByLogin(String login) {
+        return userDAO.findByLogin(login);
     }
 }
