@@ -13,6 +13,7 @@ import java.util.List;
  */
 
 @Repository
+@Transactional
 public class UserDetailsDAOImpl implements UserDetailsDAO {
 
     private SessionFactory sessionFactory;
@@ -23,31 +24,26 @@ public class UserDetailsDAOImpl implements UserDetailsDAO {
     }
 
     @Override
-    @Transactional
     public void create(UserDetails userDetails) {
         sessionFactory.getCurrentSession().save(userDetails);
     }
 
     @Override
-    @Transactional
     public void update(UserDetails userDetails) {
         sessionFactory.getCurrentSession().update(userDetails);
     }
 
     @Override
-    @Transactional
     public void delete(UserDetails userDetails) {
         sessionFactory.getCurrentSession().delete(userDetails);
     }
 
     @Override
-    @Transactional
     public UserDetails getById(Long id) {
         return sessionFactory.getCurrentSession().get(UserDetails.class, id);
     }
 
     @Override
-    @Transactional
     public List<UserDetails> findByEmail(String email) {
         return sessionFactory.getCurrentSession().createQuery("FROM "+ UserDetails.class.getName()+" WHERE email LIKE :email", UserDetails.class).setParameter("email", email).list();
     }

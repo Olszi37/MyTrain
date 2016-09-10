@@ -1,11 +1,11 @@
-package com.olszi.dao;
+package com.olszi.service;
 
 import com.olszi.model.Carriage;
 
 /**
- * Created by MOlszi on 2016-09-07.
+ * Created by MOlszi on 2016-09-10.
  */
-public interface CarriageDAO {
+public interface CarriageService {
 
     public void create(Carriage carriage);
 

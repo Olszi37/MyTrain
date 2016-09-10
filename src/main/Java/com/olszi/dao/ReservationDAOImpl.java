@@ -4,12 +4,14 @@ import com.olszi.model.Reservation;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by MOlszi on 2016-09-08.
  */
 
 @Repository
+@Transactional
 public class ReservationDAOImpl implements ReservationDAO {
 
     private SessionFactory sessionFactory;
