@@ -13,10 +13,10 @@ public class Station implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "stationID")
+    @Column(name = "stationID", nullable = false)
     private Long stationID;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     public Station(String name) {

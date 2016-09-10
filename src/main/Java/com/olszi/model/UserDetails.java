@@ -13,16 +13,16 @@ public class UserDetails implements Serializable{
 
     @Id
     @OneToOne(targetEntity = User.class)
-    @JoinColumn(name = "userID")
+    @JoinColumn(name = "userID", nullable = false)
     private User user;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "surname")
+    @Column(name = "surname", nullable = false)
     private String surname;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
     public UserDetails(User user, String name, String surname, String email) {

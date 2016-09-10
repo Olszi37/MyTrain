@@ -14,19 +14,21 @@ public class RoutePoint implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "pointID")
+    @Column(name = "pointID", nullable = false)
     private Long pointID;
 
     @ManyToOne(targetEntity = Course.class)
+    @JoinColumn(name = "courseID", nullable = false)
     private Course course;
 
     @ManyToOne(targetEntity = Station.class)
+    @JoinColumn(name = "statinID", nullable = false)
     private Station station;
 
-    @Column(name = "estimatedTimeArrival")
+    @Column(name = "estimatedTimeArrival", nullable = false)
     private LocalTime estimatedTimeArrival;
 
-    @Column(name = "distance")
+    @Column(name = "distance", nullable = false)
     private int distance;
 
     public RoutePoint(Course course, Station station, LocalTime estimatedTimeArrival, int distance) {

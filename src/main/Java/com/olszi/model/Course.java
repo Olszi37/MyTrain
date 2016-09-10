@@ -14,19 +14,22 @@ public class Course implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "courseID")
+    @Column(name = "courseID", nullable = false)
     private Long courseID;
 
     @ManyToOne(targetEntity = Station.class)
+    @JoinColumn(name = "from", nullable = false)
     private Station from;
 
     @ManyToOne(targetEntity = Station.class)
+    @JoinColumn(name = "destiny", nullable =  false)
     private Station destiny;
 
-    @Column(name = "departure")
+    @Column(name = "departure", nullable = false)
     private LocalTime departure;
 
     @ManyToOne(targetEntity = Trainset.class)
+    @JoinColumn(name = "trainsetID")
     private Trainset trainset;
 
     public Course(Station from, Station destiny, LocalTime departure, Trainset trainset) {

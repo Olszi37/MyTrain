@@ -13,16 +13,17 @@ public class Carriage implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "carriageID")
+    @Column(name = "carriageID", nullable = false)
     private Long carriageID;
 
     @ManyToOne(targetEntity = Trainset.class)
+    @JoinColumn(name = "trainsetID")
     private Trainset trainset;
 
     @Column(name = "number")
     private int number;
 
-    @Column(name = "type")
+    @Column(name = "type", nullable = false)
     private CarriageType type;
 
     public Carriage(Trainset trainset, int number, CarriageType type) {

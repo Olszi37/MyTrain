@@ -14,10 +14,11 @@ public class Reservation implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "reservationID")
+    @Column(name = "reservationID", nullable = false)
     private Long reservationID;
 
     @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "userID")
     private User user;
 
     @Column(name = "name")
@@ -27,21 +28,24 @@ public class Reservation implements Serializable{
     private String email;
 
     @ManyToOne(targetEntity = Station.class)
+    @JoinColumn(name = "initialStop", nullable = false)
     private Station initialStop;
 
     @ManyToOne(targetEntity = Station.class)
+    @JoinColumn(name = "finalStop", nullable = false)
     private Station finalStop;
 
-    @Column(name = "departureDate")
+    @Column(name = "departureDate", nullable = false)
     private LocalDate departureDate;
 
-    @Column(name = "personCount")
+    @Column(name = "personCount", nullable = false)
     private int personCount;
 
-    @Column(name = "class")
+    @Column(name = "class", nullable = false)
     private ClassType classType;
 
     @ManyToOne(targetEntity = Payment.class)
+    @JoinColumn(name = "paymentID", nullable = false)
     private Payment payment;
 
     public Reservation(User user, String name, String email, Station initialStop, Station finalStop, LocalDate departureDate, int personCount, ClassType classType, Payment payment) {

@@ -14,16 +14,16 @@ public class Payment implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "paymentID")
+    @Column(name = "paymentID", nullable = false)
     private Long paymentID;
 
-    @Column(name = "cost")
+    @Column(name = "cost", nullable = false)
     private BigDecimal cost;
 
-    @Column(name = "type")
+    @Column(name = "type", nullable = false)
     private PaymentType type;
 
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     private PaymentStatus status;
 
     public Payment(BigDecimal cost, PaymentType type, PaymentStatus status) {

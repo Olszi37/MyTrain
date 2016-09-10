@@ -13,13 +13,13 @@ public class Trainset implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "trainsetID")
+    @Column(name = "trainsetID", nullable = false)
     private Long trainsetID;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "nickname")
+    @Column(name = "nickname", nullable = false)
     private String nickname;
 
     public Trainset(String name, String nickname) {
