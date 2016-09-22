@@ -1,22 +1,17 @@
 package com.olszi.controller;
 
-import com.olszi.model.Station;
 import com.olszi.service.StationService;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.Servlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import java.io.BufferedOutputStream;
 import java.io.File;
-import java.util.List;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Iterator;
 
 /**
  * Created by MOlszi on 2016-09-10.
@@ -26,38 +21,47 @@ import java.util.List;
 @RequestMapping(value = "station")
 public class StationController {
 
+    static String REPOSITORY_PATH;
+
     @Autowired
     private StationService stationService;
 
-    @RequestMapping(method = RequestMethod.POST, value = "set/upload")
-    public void setStationsByFile(HttpServletRequest httpServletRequest){
+    @RequestMapping(method = RequestMethod.POST, value = "set/upload", headers = "multipart/*")
+    public void setStationsByFile(MultipartHttpServletRequest request){
 
-        DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
-        diskFileItemFactory.setSizeThreshold(1024*1024*3);
-        diskFileItemFactory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+        File file = uploadFile(request);
+    }
 
-        ServletFileUpload fileUpload = new ServletFileUpload();
+    public File uploadFile(MultipartHttpServletRequest request){
 
-        String uploadPath = httpServletRequest.getServletContext().getRealPath("") + File.separator + "upload";
+        Iterator<String> iterator = request.getFileNames();
+        MultipartFile multipartFile = request.getFile(iterator.next());
 
-        try {
-            List<FileItem> items = fileUpload.parseRequest(httpServletRequest);
+        String path = request.getServletContext().getRealPath("/");
 
-            if(items != null && items.size() > 0){
-                for (FileItem item : items){
-                    if(!item.isFormField()){
-                        String fileName = new File(item.getName()).getName();
-                        String filePath = uploadPath + File.separator + fileName;
-                        File storeFile = new File(filePath);
+        File directory = new File(path + "/uploads");
 
-                        item.write(storeFile);
-                    }
-                }
-            }
-        } catch (FileUploadException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
+        if(!directory.exists()){
+            directory.mkdirs();
+        }
+
+        REPOSITORY_PATH = directory.getPath();
+
+        File file = null;
+
+        try{
+            byte[] bytes = multipartFile.getBytes();
+
+            file = new File(directory.getAbsolutePath()+ File.separator + multipartFile.getName());
+
+            BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file));
+            outputStream.write(bytes);
+            outputStream.close();
+
+        }catch (IOException e) {
             e.printStackTrace();
         }
+
+        return file;
     }
 }
