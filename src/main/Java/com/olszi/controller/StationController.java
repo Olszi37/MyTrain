@@ -1,17 +1,21 @@
 package com.olszi.controller;
 
+import com.olszi.model.Station;
 import com.olszi.service.StationService;
+import com.olszi.system.FileUpload;
+import org.apache.commons.io.FileUtils;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by MOlszi on 2016-09-10.
@@ -21,47 +25,63 @@ import java.util.Iterator;
 @RequestMapping(value = "station")
 public class StationController {
 
-    static String REPOSITORY_PATH;
-
     @Autowired
     private StationService stationService;
 
-    @RequestMapping(method = RequestMethod.POST, value = "set/upload", headers = "multipart/*")
-    public void setStationsByFile(MultipartHttpServletRequest request){
+    @Autowired
+    private FileUpload fileUpload;
 
-        File file = uploadFile(request);
-    }
+    @RequestMapping(method = RequestMethod.POST, value = "set/upload", headers = "Content-Type=multipart/*")
+    public @ResponseBody List<Station> setStationsByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
 
-    public File uploadFile(MultipartHttpServletRequest request){
+        File file = fileUpload.upload(request);
+        List<Station> stations = getFileData(file);
 
-        Iterator<String> iterator = request.getFileNames();
-        MultipartFile multipartFile = request.getFile(iterator.next());
-
-        String path = request.getServletContext().getRealPath("/");
-
-        File directory = new File(path + "/uploads");
-
-        if(!directory.exists()){
-            directory.mkdirs();
+        for(Station station : stations){
+            stationService.create(station);
         }
 
-        REPOSITORY_PATH = directory.getPath();
+        // file cannot be deleted -- Olszi
+//        System.out.println(file.delete());
+//        try{
+//            FileUtils.forceDelete(file);
+//        }catch(Exception e){
+//            System.out.println("forceDelete false");
+//        }
+//
+//        System.out.println(file.exists());
 
-        File file = null;
+        return stations;
+    }
 
-        try{
-            byte[] bytes = multipartFile.getBytes();
+    public List<Station> getFileData(File file) throws IOException, InvalidFormatException {
 
-            file = new File(directory.getAbsolutePath()+ File.separator + multipartFile.getName());
+        List<Station> stations = new ArrayList<Station>();
 
-            BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file));
-            outputStream.write(bytes);
-            outputStream.close();
+        Workbook workbook = WorkbookFactory.create(file);
 
-        }catch (IOException e) {
-            e.printStackTrace();
+        for(Row row : workbook.getSheetAt(0))
+        {
+            if(row.getRowNum() != 0)
+            {
+                Station station = new Station();
+                for(Cell cell : row)
+                {
+                    if(cell.getColumnIndex() == 0){
+                        station.setName(cell.getStringCellValue());
+                    }
+                    else{
+                        station.setProvince(cell.getStringCellValue());
+                    }
+                }
+                stations.add(station);
+            }
         }
 
-        return file;
+        return stations;
     }
+    // encoding still not working -- Olszi
+//    public String encodeData(byte[] bytes) throws UnsupportedEncodingException {
+//        return new String(bytes, "UTF-8");
+//    }
 }
