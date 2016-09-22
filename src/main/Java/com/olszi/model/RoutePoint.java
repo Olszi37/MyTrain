@@ -22,7 +22,7 @@ public class RoutePoint implements Serializable{
     private Course course;
 
     @ManyToOne(targetEntity = Station.class)
-    @JoinColumn(name = "statinID", nullable = false)
+    @JoinColumn(name = "stationID", nullable = false)
     private Station station;
 
     @Column(name = "estimatedTimeArrival", nullable = false)
