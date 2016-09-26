@@ -31,7 +31,7 @@ public class StationController {
     @Autowired
     private FileUpload fileUpload;
 
-    @RequestMapping(method = RequestMethod.POST, value = "set/upload", headers = "Content-Type=multipart/*")
+    @RequestMapping(method = RequestMethod.POST, value = "set/file", headers = "Content-Type = multipart/*")
     public @ResponseBody List<Station> setStationsByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
 
         File file = fileUpload.upload(request);
@@ -40,16 +40,6 @@ public class StationController {
         for(Station station : stations){
             stationService.create(station);
         }
-
-        // file cannot be deleted -- Olszi
-//        System.out.println(file.delete());
-//        try{
-//            FileUtils.forceDelete(file);
-//        }catch(Exception e){
-//            System.out.println("forceDelete false");
-//        }
-//
-//        System.out.println(file.exists());
 
         return stations;
     }

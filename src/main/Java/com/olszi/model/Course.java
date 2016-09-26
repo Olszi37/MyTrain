@@ -31,6 +31,9 @@ public class Course implements Serializable{
         this.destiny = destiny;
     }
 
+    public Course() {
+    }
+
     public Long getCourseID() {
         return courseID;
     }
