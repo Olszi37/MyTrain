@@ -5,6 +5,8 @@ import com.olszi.model.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by MOlszi on 2016-09-10.
  */
@@ -37,5 +39,10 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Course getById(Long id) {
         return courseDAO.getById(id);
+    }
+
+    @Override
+    public List<Course> getAll() {
+        return courseDAO.getAll();
     }
 }
