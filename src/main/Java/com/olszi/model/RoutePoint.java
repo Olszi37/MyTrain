@@ -25,16 +25,20 @@ public class RoutePoint implements Serializable{
     @JoinColumn(name = "stationID", nullable = false)
     private Station station;
 
-    @Column(name = "estimatedTimeArrival", nullable = false)
-    private LocalTime estimatedTimeArrival;
+    @Column(name = "arrival")
+    private LocalTime arrival;
+
+    @Column(name = "departure")
+    private LocalTime departure;
 
     @Column(name = "distance", nullable = false)
     private int distance;
 
-    public RoutePoint(Course course, Station station, LocalTime estimatedTimeArrival, int distance) {
+    public RoutePoint(Course course, Station station, LocalTime arrival, LocalTime departure, int distance) {
         this.course = course;
         this.station = station;
-        this.estimatedTimeArrival = estimatedTimeArrival;
+        this.arrival = arrival;
+        this.departure = departure;
         this.distance = distance;
     }
 
@@ -61,12 +65,20 @@ public class RoutePoint implements Serializable{
         this.station = station;
     }
 
-    public LocalTime getEstimatedTimeArrival() {
-        return estimatedTimeArrival;
+    public LocalTime getArrival() {
+        return arrival;
     }
 
-    public void setEstimatedTimeArrival(LocalTime estimatedTimeArrival) {
-        this.estimatedTimeArrival = estimatedTimeArrival;
+    public void setArrival(LocalTime arrival) {
+        this.arrival = arrival;
+    }
+
+    public LocalTime getDeparture() {
+        return departure;
+    }
+
+    public void setDeparture(LocalTime departure) {
+        this.departure = departure;
     }
 
     public int getDistance() {

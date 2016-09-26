@@ -5,6 +5,8 @@ import com.olszi.model.Trainset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by MOlszi on 2016-09-10.
  */
@@ -37,5 +39,10 @@ public class TrainsetServiceImpl implements TrainsetService {
     @Override
     public Trainset getById(Long id) {
         return trainsetDAO.getById(id);
+    }
+
+    @Override
+    public List<Trainset> getAll() {
+        return trainsetDAO.getAll();
     }
 }

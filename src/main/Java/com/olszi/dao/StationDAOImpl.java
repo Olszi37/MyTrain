@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by MOlszi on 2016-09-08.
  */
@@ -39,5 +41,10 @@ public class StationDAOImpl implements StationDAO {
     @Override
     public Station getById(Long id) {
         return sessionFactory.getCurrentSession().get(Station.class, id);
+    }
+
+    @Override
+    public List<Station> getAll() {
+        return sessionFactory.getCurrentSession().createQuery("FROM station", Station.class).list();
     }
 }

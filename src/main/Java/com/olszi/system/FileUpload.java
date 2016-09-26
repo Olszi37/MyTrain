@@ -4,10 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Iterator;
 
 /**
@@ -17,7 +14,10 @@ import java.util.Iterator;
 @Controller
 public class FileUpload {
 
-    public File upload(MultipartHttpServletRequest request){
+    public File upload(MultipartHttpServletRequest request) throws UnsupportedEncodingException {
+
+        request.setCharacterEncoding("utf-8");
+
         Iterator<String> iterator = request.getFileNames();
         MultipartFile multipartFile = request.getFile(iterator.next());
 

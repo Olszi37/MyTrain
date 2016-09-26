@@ -5,6 +5,8 @@ import com.olszi.model.Station;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by MOlszi on 2016-09-10.
  */
@@ -37,5 +39,10 @@ public class StationServiceImpl implements StationService {
     @Override
     public Station getById(Long id) {
         return stationDAO.getById(id);
+    }
+
+    @Override
+    public List<Station> getAll() {
+        return stationDAO.getAll();
     }
 }

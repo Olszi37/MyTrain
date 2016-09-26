@@ -27,7 +27,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     @Bean
     MultipartResolver multipartResolver(){
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-        multipartResolver.setDefaultEncoding("UTF-8");
+        multipartResolver.setDefaultEncoding("utf-8");
         return multipartResolver;
     }
 }

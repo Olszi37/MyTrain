@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by MOlszi on 2016-09-08.
  */
@@ -39,5 +41,10 @@ public class TrainsetDAOImpl implements TrainsetDAO {
     @Override
     public Trainset getById(Long id) {
         return sessionFactory.getCurrentSession().get(Trainset.class, id);
+    }
+
+    @Override
+    public List<Trainset> getAll() {
+        return sessionFactory.getCurrentSession().createQuery("FROM trainset", Trainset.class).list();
     }
 }
