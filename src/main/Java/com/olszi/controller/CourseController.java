@@ -60,16 +60,8 @@ public class CourseController {
             if(row.getRowNum() != 0){
                 Course course = new Course();
 
-                for(Cell cell : row){
-                    if(cell.getColumnIndex() != 0)
-                    {
-                        if(cell.getColumnIndex() == 1)
-                            course.setFrom(stations.get((int)cell.getNumericCellValue()-1));
-
-                        if(cell.getColumnIndex() == 2)
-                            course.setDestiny(stations.get((int)cell.getNumericCellValue()-1));
-                    }
-                }
+                course.setFrom(stations.get((int) row.getCell(1).getNumericCellValue() - 1));
+                course.setDestiny((stations.get((int) row.getCell(2).getNumericCellValue() - 1)));
 
                 courses.add(course);
             }

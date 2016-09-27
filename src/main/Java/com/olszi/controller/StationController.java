@@ -3,7 +3,6 @@ package com.olszi.controller;
 import com.olszi.model.Station;
 import com.olszi.service.StationService;
 import com.olszi.system.FileUpload;
-import org.apache.commons.io.FileUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,16 +54,10 @@ public class StationController {
             if(row.getRowNum() != 0)
             {
                 Station station = new Station();
-                for(Cell cell : row)
-                {
-                    if(cell.getColumnIndex() != 0){
-                        if(cell.getColumnIndex() == 1)
-                            station.setName(cell.getStringCellValue());
-                        if(cell.getColumnIndex() == 2)
-                            station.setProvince(cell.getStringCellValue());
 
-                    }
-                }
+                station.setName(row.getCell(1).getStringCellValue());
+                station.setProvince(row.getCell(2).getStringCellValue());
+
                 stations.add(station);
             }
         }

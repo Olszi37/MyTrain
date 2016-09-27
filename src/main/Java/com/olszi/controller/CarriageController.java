@@ -2,14 +2,11 @@ package com.olszi.controller;
 
 import com.olszi.model.Carriage;
 import com.olszi.model.CarriageType;
-import com.olszi.model.RoutePoint;
 import com.olszi.model.Trainset;
 import com.olszi.service.CarriageService;
-import com.olszi.service.StationService;
 import com.olszi.service.TrainsetService;
 import com.olszi.system.FileUpload;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -21,7 +18,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,18 +61,10 @@ public class CarriageController {
             {
                 Carriage carriage = new Carriage();
 
-                for(Cell cell : row)
-                {
-                    if(cell.getColumnIndex() != 0)
-                    {
-                        if(cell.getColumnIndex() == 1)
-                            carriage.setTrainset(trainsets.get((int)cell.getNumericCellValue()-1));
-                        if(cell.getColumnIndex() == 2)
-                            carriage.setNumber((int)cell.getNumericCellValue());
-                        if(cell.getColumnIndex() == 3)
-                            carriage.setType(CarriageType.values()[(int)cell.getNumericCellValue()]);
-                    }
-                }
+                carriage.setTrainset(trainsets.get((int) row.getCell(1).getNumericCellValue() - 1));
+                carriage.setNumber((int) row.getCell(2).getNumericCellValue());
+                carriage.setType(CarriageType.values()[(int) row.getCell(3).getNumericCellValue()]);
+
                 carriages.add(carriage);
             }
         }
