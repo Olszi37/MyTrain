@@ -57,11 +57,12 @@ public class StationController {
                 Station station = new Station();
                 for(Cell cell : row)
                 {
-                    if(cell.getColumnIndex() == 0){
-                        station.setName(cell.getStringCellValue());
-                    }
-                    else{
-                        station.setProvince(cell.getStringCellValue());
+                    if(cell.getColumnIndex() != 0){
+                        if(cell.getColumnIndex() == 1)
+                            station.setName(cell.getStringCellValue());
+                        if(cell.getColumnIndex() == 2)
+                            station.setProvince(cell.getStringCellValue());
+
                     }
                 }
                 stations.add(station);

@@ -34,12 +34,17 @@ public class RoutePoint implements Serializable{
     @Column(name = "distance", nullable = false)
     private int distance;
 
-    public RoutePoint(Course course, Station station, LocalTime arrival, LocalTime departure, int distance) {
+    @ManyToOne(targetEntity = Trainset.class)
+    @JoinColumn(name = "trainsetID", nullable = false)
+    private Trainset trainset;
+
+    public RoutePoint(Course course, Station station, LocalTime arrival, LocalTime departure, int distance, Trainset trainset) {
         this.course = course;
         this.station = station;
         this.arrival = arrival;
         this.departure = departure;
         this.distance = distance;
+        this.trainset = trainset;
     }
 
     public RoutePoint() {
@@ -87,5 +92,13 @@ public class RoutePoint implements Serializable{
 
     public void setDistance(int distance) {
         this.distance = distance;
+    }
+
+    public Trainset getTrainset() {
+        return trainset;
+    }
+
+    public void setTrainset(Trainset trainset) {
+        this.trainset = trainset;
     }
 }
