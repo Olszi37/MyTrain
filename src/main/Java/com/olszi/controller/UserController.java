@@ -28,7 +28,7 @@ public class UserController {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, value = "create")
     public void createUser(HttpServletRequest httpServletRequest){
 
         User user = prepareUser(httpServletRequest);

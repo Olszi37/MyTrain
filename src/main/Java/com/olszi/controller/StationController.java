@@ -30,7 +30,7 @@ public class StationController {
     @Autowired
     private FileUpload fileUpload;
 
-    @RequestMapping(method = RequestMethod.POST, value = "set/file", headers = "Content-Type = multipart/*")
+    @RequestMapping(method = RequestMethod.POST, value = "set/file", headers = "Content-Type=multipart/*")
     public @ResponseBody List<Station> setStationsByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
 
         File file = fileUpload.upload(request);
