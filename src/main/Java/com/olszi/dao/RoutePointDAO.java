@@ -1,5 +1,6 @@
 package com.olszi.dao;
 
+import com.olszi.model.Course;
 import com.olszi.model.RoutePoint;
 import com.olszi.model.Station;
 
@@ -19,4 +20,6 @@ public interface RoutePointDAO{
     public RoutePoint getById(Long id);
 
     public List<RoutePoint> getByStation(Station station);
+
+    public List<RoutePoint> getByCourse(Course course);
 }

@@ -1,5 +1,6 @@
 package com.olszi.dao;
 
+import com.olszi.model.Course;
 import com.olszi.model.RoutePoint;
 import com.olszi.model.Station;
 import org.hibernate.Session;
@@ -47,7 +48,13 @@ public class RoutePointDAOImpl implements RoutePointDAO {
 
     @Override
     public List<RoutePoint> getByStation(Station station) {
-        return sessionFactory.getCurrentSession().createQuery("FROM routePoint WHERE station = :id", RoutePoint.class)
-                .setParameter("id", station.getStationID()).getResultList();
+        return sessionFactory.getCurrentSession().createQuery("FROM routePoint WHERE stationID = :station", RoutePoint.class)
+                .setParameter("station", station.getStationID()).getResultList();
+    }
+
+    @Override
+    public List<RoutePoint> getByCourse(Course course) {
+        return sessionFactory.getCurrentSession().createQuery("FROM routePoint WHERE courseID = :course", RoutePoint.class)
+                .setParameter("course", course.getCourseID()).getResultList();
     }
 }
