@@ -2,8 +2,11 @@ package com.olszi.service;
 
 import com.olszi.dao.RoutePointDAO;
 import com.olszi.model.RoutePoint;
+import com.olszi.model.Station;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by MOlszi on 2016-09-10.
@@ -37,5 +40,10 @@ public class RoutePointServiceImpl implements RoutePointService {
     @Override
     public RoutePoint getById(Long id) {
         return routePointDAO.getById(id);
+    }
+
+    @Override
+    public List<RoutePoint> getByStation(Station station) {
+        return routePointDAO.getByStation(station);
     }
 }

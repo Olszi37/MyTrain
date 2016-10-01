@@ -1,11 +1,14 @@
 package com.olszi.dao;
 
 import com.olszi.model.RoutePoint;
+import com.olszi.model.Station;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by MOlszi on 2016-09-08.
@@ -40,5 +43,11 @@ public class RoutePointDAOImpl implements RoutePointDAO {
     @Override
     public RoutePoint getById(Long id) {
         return sessionFactory.getCurrentSession().get(RoutePoint.class, id);
+    }
+
+    @Override
+    public List<RoutePoint> getByStation(Station station) {
+        return sessionFactory.getCurrentSession().createQuery("FROM routePoint WHERE station = :id", RoutePoint.class)
+                .setParameter("id", station.getStationID()).getResultList();
     }
 }
