@@ -52,4 +52,9 @@ public class RoutePointServiceImpl implements RoutePointService {
     public List<RoutePoint> getByCourse(Course course) {
         return routePointDAO.getByCourse(course);
     }
+
+    @Override
+    public List<RoutePoint> getByCourseBetweenStations(Course course, Station station1, Station station2) {
+        return routePointDAO.getByCourseBetweenStations(course, station1, station2);
+    }
 }

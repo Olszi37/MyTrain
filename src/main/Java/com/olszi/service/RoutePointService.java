@@ -22,4 +22,6 @@ public interface RoutePointService {
     public List<RoutePoint> getByStation(Station station);
 
     public List<RoutePoint> getByCourse(Course course);
+
+    public List<RoutePoint> getByCourseBetweenStations(Course course, Station station1, Station station2);
 }

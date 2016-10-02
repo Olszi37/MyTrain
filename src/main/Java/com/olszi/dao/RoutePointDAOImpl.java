@@ -57,4 +57,12 @@ public class RoutePointDAOImpl implements RoutePointDAO {
         return sessionFactory.getCurrentSession().createQuery("FROM routePoint WHERE courseID = :course", RoutePoint.class)
                 .setParameter("course", course.getCourseID()).getResultList();
     }
+
+    @Override
+    public List<RoutePoint> getByCourseBetweenStations(Course course, Station station1, Station station2) {
+        return sessionFactory.getCurrentSession()
+                .createQuery("FROM routePoint WHERE courseID = :course AND stationID BETWEEN :id1 AND :id2", RoutePoint.class)
+                .setParameter("course", course.getCourseID())
+                .setParameter("id1", station1.getStationID()).setParameter("id2", station2.getStationID()).getResultList();
+    }
 }
