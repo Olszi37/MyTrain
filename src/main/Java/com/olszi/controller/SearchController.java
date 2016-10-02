@@ -52,7 +52,8 @@ public class SearchController {
         {
             for(RoutePoint routePoint2 : finalStops)
             {
-                if(routePoint1.getCourse().getCourseID() == routePoint2.getCourse().getCourseID())
+                if(routePoint1.getCourse().getCourseID() == routePoint2.getCourse().getCourseID()
+                        && routePoint1.getPointID() < routePoint2.getPointID())
                 {
                     SearchResult result = new SearchResult();
                     result.setResults(routePointService
