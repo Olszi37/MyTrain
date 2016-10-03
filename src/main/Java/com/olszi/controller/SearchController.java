@@ -52,22 +52,22 @@ public class SearchController {
 
         List<SearchResult> results = new ArrayList<SearchResult>();
 
-        for(RoutePoint routePoint1 : initialStops)
-        {
-            for(RoutePoint routePoint2 : finalStops)
-            {
-                if(routePoint1.getCourse().getCourseID() == routePoint2.getCourse().getCourseID()
-                        && routePoint1.getPointID() < routePoint2.getPointID())
-                {
-                    SearchResult result = new SearchResult();
-                    result.setResults(routePointService
-                            .getByCourseBetweenStations(routePoint1.getCourse(), routePoint1.getStation(), routePoint2.getStation()));
-                    result.setDepartureTime(routePoint1.getDeparture());
-
-                    results.add(result);
-                }
-            }
-        }
+//        for(RoutePoint routePoint1 : initialStops)
+//        {
+//            for(RoutePoint routePoint2 : finalStops)
+//            {
+//                if(routePoint1.getCourse().getCourseID() == routePoint2.getCourse().getCourseID()
+//                        && routePoint1.getPointID() < routePoint2.getPointID())
+//                {
+//                    SearchResult result = new SearchResult();
+//                    result.setResults(routePointService
+//                            .getByCourseBetweenStations(routePoint1.getCourse(), routePoint1.getStation(), routePoint2.getStation()));
+//                    result.setDepartureTime(routePoint1.getDeparture());
+//
+//                    results.add(result);
+//                }
+//            }
+//        }
 
         return results;
     }
