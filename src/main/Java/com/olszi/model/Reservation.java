@@ -17,10 +17,6 @@ public class Reservation implements Serializable{
     @Column(name = "reservationID", nullable = false)
     private Long reservationID;
 
-    @ManyToOne(targetEntity = User.class)
-    @JoinColumn(name = "userID")
-    private User user;
-
     @Column(name = "name")
     private String name;
 
@@ -48,8 +44,7 @@ public class Reservation implements Serializable{
     @JoinColumn(name = "paymentID", nullable = false)
     private Payment payment;
 
-    public Reservation(User user, String name, String email, Station initialStop, Station finalStop, LocalDate departureDate, int personCount, ClassType classType, Payment payment) {
-        this.user = user;
+    public Reservation(String name, String email, Station initialStop, Station finalStop, LocalDate departureDate, int personCount, ClassType classType, Payment payment) {
         this.name = name;
         this.email = email;
         this.initialStop = initialStop;
@@ -65,14 +60,6 @@ public class Reservation implements Serializable{
 
     public Long getReservationID() {
         return reservationID;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public String getName() {

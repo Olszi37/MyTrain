@@ -25,10 +25,13 @@ public class Course implements Serializable{
     @JoinColumn(name = "destiny", nullable =  false)
     private Station destiny;
 
+    @Column(name = "descpription")
+    private String description;
 
-    public Course(Station from, Station destiny) {
+    public Course(Station from, Station destiny, String description) {
         this.from = from;
         this.destiny = destiny;
+        this.description = description;
     }
 
     public Course() {
@@ -52,5 +55,13 @@ public class Course implements Serializable{
 
     public void setDestiny(Station destiny) {
         this.destiny = destiny;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

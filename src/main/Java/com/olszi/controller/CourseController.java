@@ -61,7 +61,8 @@ public class CourseController {
                 Course course = new Course();
 
                 course.setFrom(stations.get((int) row.getCell(1).getNumericCellValue() - 1));
-                course.setDestiny((stations.get((int) row.getCell(2).getNumericCellValue() - 1)));
+                course.setDestiny(stations.get((int) row.getCell(2).getNumericCellValue() - 1));
+                course.setDescription(row.getCell(3).getStringCellValue());
 
                 courses.add(course);
             }
