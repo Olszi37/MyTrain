@@ -18,14 +18,14 @@ public class Course implements Serializable{
     private Long courseID;
 
     @ManyToOne(targetEntity = Station.class)
-    @JoinColumn(name = "from", nullable = false)
+    @JoinColumn(name = "`from`", nullable = false)
     private Station from;
 
     @ManyToOne(targetEntity = Station.class)
     @JoinColumn(name = "destiny", nullable =  false)
     private Station destiny;
 
-    @Column(name = "descpription")
+    @Column(name = "description", nullable = false)
     private String description;
 
     public Course(Station from, Station destiny, String description) {

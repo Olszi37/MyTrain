@@ -16,15 +16,15 @@ public class Trainset implements Serializable{
     @Column(name = "trainsetID", nullable = false)
     private Long trainsetID;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "number", nullable = false)
+    private String number;
+
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "nickname", nullable = false)
-    private String nickname;
-
-    public Trainset(String name, String nickname) {
+    public Trainset(String number, String name) {
+        this.number = number;
         this.name = name;
-        this.nickname = nickname;
     }
 
     public Trainset() {
@@ -34,19 +34,19 @@ public class Trainset implements Serializable{
         return trainsetID;
     }
 
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
     }
 }

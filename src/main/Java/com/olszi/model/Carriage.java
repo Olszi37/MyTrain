@@ -17,19 +17,23 @@ public class Carriage implements Serializable{
     private Long carriageID;
 
     @ManyToOne(targetEntity = Trainset.class)
-    @JoinColumn(name = "trainsetID")
+    @JoinColumn(name = "trainsetID", nullable = false)
     private Trainset trainset;
 
-    @Column(name = "number")
+    @Column(name = "number", nullable = false)
     private int number;
 
     @Column(name = "type", nullable = false)
     private CarriageType type;
 
-    public Carriage(Trainset trainset, int number, CarriageType type) {
+    @Column(name = "numberOfSeats", nullable = false)
+    private int numberOfSeats;
+
+    public Carriage(Trainset trainset, int number, CarriageType type, int numberOfSeats) {
         this.trainset = trainset;
         this.number = number;
         this.type = type;
+        this.numberOfSeats = numberOfSeats;
     }
 
     public Carriage() {
@@ -61,5 +65,13 @@ public class Carriage implements Serializable{
 
     public void setType(CarriageType type) {
         this.type = type;
+    }
+
+    public int getNumberOfSeats() {
+        return numberOfSeats;
+    }
+
+    public void setNumberOfSeats(int numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
     }
 }
