@@ -78,12 +78,20 @@ public class RoutePointController {
                 point.setCourse(courses.get((int) row.getCell(1).getNumericCellValue() - 1 ));
                 point.setStation(stations.get((int) row.getCell(2).getNumericCellValue() - 1));
 
-                Instant arrival = row.getCell(3).getDateCellValue().toInstant();
-                Instant departure = row.getCell(4).getDateCellValue().toInstant();
+                if(row.getCell(3).getDateCellValue() == null){
+                    point.setArrival(null);
+                }else{
+                    Instant arrival = row.getCell(3).getDateCellValue().toInstant();
+                    point.setArrival(LocalDateTime.ofInstant(arrival, ZoneId.systemDefault()).toLocalTime());
+                }
 
-                point.setArrival(LocalDateTime.ofInstant(arrival, ZoneId.systemDefault()).toLocalTime());
-                point.setDeparture(LocalDateTime.ofInstant(departure, ZoneId.systemDefault()).toLocalTime());
-
+                if(row.getCell(4).getDateCellValue() == null){
+                    point.setDeparture(null);
+                }else{
+                    Instant departure = row.getCell(4).getDateCellValue().toInstant();
+                    point.setDeparture(LocalDateTime.ofInstant(departure, ZoneId.systemDefault()).toLocalTime());
+                }
+                
                 point.setDistance((int) row.getCell(5).getNumericCellValue());
                 point.setTrainset(trainsets.get((int) row.getCell(6).getNumericCellValue() - 1));
 
