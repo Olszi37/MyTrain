@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Created by MOlszi on 2016-08-31.
  */
 
-@Entity
+@Entity(name = "trainset")
 @Table(name = "trainset")
 public class Trainset implements Serializable{
 

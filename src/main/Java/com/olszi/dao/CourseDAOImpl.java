@@ -45,6 +45,6 @@ public class CourseDAOImpl implements CourseDAO {
 
     @Override
     public List<Course> getAll() {
-        return sessionFactory.getCurrentSession().createQuery("FROM course", Course.class).list();
+        return sessionFactory.getCurrentSession().createQuery("FROM course", Course.class).getResultList();
     }
 }

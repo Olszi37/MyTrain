@@ -45,6 +45,6 @@ public class TrainsetDAOImpl implements TrainsetDAO {
 
     @Override
     public List<Trainset> getAll() {
-        return sessionFactory.getCurrentSession().createQuery("FROM trainset", Trainset.class).list();
+        return sessionFactory.getCurrentSession().createQuery("FROM trainset", Trainset.class).getResultList();
     }
 }

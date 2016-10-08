@@ -8,7 +8,7 @@ import java.time.LocalDate;
  * Created by MOlszi on 2016-08-31.
  */
 
-@Entity
+@Entity(name = "payment")
 @Table(name = "reservation")
 public class Reservation implements Serializable{
 

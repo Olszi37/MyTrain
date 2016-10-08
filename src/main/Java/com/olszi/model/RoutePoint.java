@@ -8,7 +8,7 @@ import java.time.LocalTime;
  * Created by MOlszi on 2016-08-31.
  */
 
-@Entity
+@Entity(name = "routePoint")
 @Table(name = "routePoint")
 public class RoutePoint implements Serializable{
 

@@ -8,7 +8,7 @@ import java.math.BigDecimal;
  * Created by MOlszi on 2016-08-31.
  */
 
-@Entity
+@Entity(name = "payment")
 @Table(name = "payment")
 public class Payment implements Serializable{
 

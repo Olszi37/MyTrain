@@ -45,6 +45,6 @@ public class StationDAOImpl implements StationDAO {
 
     @Override
     public List<Station> getAll() {
-        return sessionFactory.getCurrentSession().createQuery("FROM station", Station.class).list();
+        return sessionFactory.getCurrentSession().createQuery("FROM station", Station.class).getResultList();
     }
 }

@@ -8,7 +8,7 @@ import java.time.LocalTime;
  * Created by MOlszi on 2016-08-31.
  */
 
-@Entity
+@Entity(name = "course")
 @Table(name = "course")
 public class Course implements Serializable{
 
@@ -17,11 +17,11 @@ public class Course implements Serializable{
     @Column(name = "courseID", nullable = false)
     private Long courseID;
 
-    @ManyToOne(targetEntity = Station.class)
+    @ManyToOne(targetEntity = Station.class, optional = false)
     @JoinColumn(name = "`from`", nullable = false)
     private Station from;
 
-    @ManyToOne(targetEntity = Station.class)
+    @ManyToOne(targetEntity = Station.class, optional = false)
     @JoinColumn(name = "destiny", nullable =  false)
     private Station destiny;
 
