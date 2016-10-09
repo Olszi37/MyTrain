@@ -57,7 +57,8 @@ public class TrainsetController {
                 Trainset trainset = new Trainset();
 
                 trainset.setNumber(row.getCell(1).getStringCellValue());
-                if(row.getCell(2).getStringCellValue() == null || row.getCell(2).getStringCellValue().isEmpty())
+
+                if(row.getCell(2) == null)
                     trainset.setName("");
                 else
                     trainset.setName(row.getCell(2).getStringCellValue());

@@ -19,14 +19,6 @@ public class TestController {
 
     @RequestMapping(method = RequestMethod.GET, value = "test")
     public @ResponseBody ResponseEntity testRest(){
-        return new ResponseEntity<String>("Should be fine", HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "testInput", method = RequestMethod.POST)
-    public @ResponseBody String testInout(HttpServletRequest request) throws UnsupportedEncodingException {
-        request.setCharacterEncoding("UTF-8");
-        String inJavaText = "Łódź";
-        String text = request.getHeader("text");
-        return "In java text: " + inJavaText + " setted String: " + text + " Clearly from request: " + request.getHeader("text");
+        return new ResponseEntity<String>("App is up", HttpStatus.OK);
     }
 }

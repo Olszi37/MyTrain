@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,8 +65,4 @@ public class StationController {
 
         return stations;
     }
-    // encoding still not working -- Olszi
-//    public String encodeData(byte[] bytes) throws UnsupportedEncodingException {
-//        return new String(bytes, "UTF-8");
-//    }
 }
