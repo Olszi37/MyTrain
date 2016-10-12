@@ -3,6 +3,7 @@ package com.olszi.model;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -11,24 +12,25 @@ import java.util.List;
  */
 public class SearchResult {
 
-    private List<RoutePoint> results;
+    private List<List<RoutePoint>> results;
 
     private LocalTime departureTime;
 
-    public SearchResult(List<RoutePoint> results, LocalTime departureTime) {
+    public SearchResult(List<List<RoutePoint>> results, LocalTime departureTime) {
         this.results = results;
         this.departureTime = departureTime;
     }
 
     public SearchResult() {
+        results = new ArrayList<List<RoutePoint>>();
     }
 
-    public List<RoutePoint> getResults() {
+    public List<List<RoutePoint>> getResults() {
         return results;
     }
 
-    public void setResults(List<RoutePoint> results) {
-        this.results = results;
+    public void addResults(List<RoutePoint> results) {
+        this.results.add(results);
     }
 
     public LocalTime getDepartureTime() {

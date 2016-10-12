@@ -31,6 +31,11 @@ public class StationController {
     @Autowired
     private FileUpload fileUpload;
 
+    @RequestMapping(value = "get/all", method = RequestMethod.GET)
+    public @ResponseBody List<Station> getAllStations(){
+        return stationService.getAll();
+    }
+
     @RequestMapping(method = RequestMethod.POST, value = "set/file", headers = "Content-Type=multipart/*")
     public @ResponseBody List<Station> setStationsByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
 

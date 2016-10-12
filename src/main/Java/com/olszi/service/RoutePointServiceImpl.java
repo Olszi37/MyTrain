@@ -4,6 +4,7 @@ import com.olszi.dao.RoutePointDAO;
 import com.olszi.model.Course;
 import com.olszi.model.RoutePoint;
 import com.olszi.model.Station;
+import com.olszi.model.Trainset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,8 +45,13 @@ public class RoutePointServiceImpl implements RoutePointService {
     }
 
     @Override
-    public List<RoutePoint> getByStation(Station station) {
-        return routePointDAO.getByStation(station);
+    public List<RoutePoint> getInitialStations(Station station) {
+        return routePointDAO.getInitialStations(station);
+    }
+
+    @Override
+    public List<RoutePoint> getFinalStations(Station station) {
+        return routePointDAO.getFinalStations(station);
     }
 
     @Override
@@ -54,7 +60,12 @@ public class RoutePointServiceImpl implements RoutePointService {
     }
 
     @Override
-    public List<RoutePoint> getByCourseBetweenStations(Course course, Station station1, Station station2) {
-        return routePointDAO.getByCourseBetweenStations(course, station1, station2);
+    public List<RoutePoint> getByCourseAndTrainset(Course course, Trainset trainset) {
+        return routePointDAO.getByCourseAndTrainset(course, trainset);
+    }
+
+    @Override
+    public List<RoutePoint> getByCourseTrainsetAndStations(Course course, Trainset trainset, Station station1, Station station2) {
+        return routePointDAO.getByCourseTrainsetAndStations(course, trainset, station1, station2);
     }
 }

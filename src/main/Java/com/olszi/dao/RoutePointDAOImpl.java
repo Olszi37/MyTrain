@@ -3,6 +3,7 @@ package com.olszi.dao;
 import com.olszi.model.Course;
 import com.olszi.model.RoutePoint;
 import com.olszi.model.Station;
+import com.olszi.model.Trainset;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +48,14 @@ public class RoutePointDAOImpl implements RoutePointDAO {
     }
 
     @Override
-    public List<RoutePoint> getByStation(Station station) {
-        return sessionFactory.getCurrentSession().createQuery("FROM routePoint WHERE stationID = :station", RoutePoint.class)
+    public List<RoutePoint> getInitialStations(Station station) {
+        return sessionFactory.getCurrentSession().createQuery("FROM routePoint WHERE stationID = :station AND departure != 0", RoutePoint.class)
+                .setParameter("station", station.getStationID()).getResultList();
+    }
+
+    @Override
+    public List<RoutePoint> getFinalStations(Station station) {
+        return sessionFactory.getCurrentSession().createQuery("FROM routePoint WHERE stationID = :station AND distance != 0", RoutePoint.class)
                 .setParameter("station", station.getStationID()).getResultList();
     }
 
@@ -59,10 +66,16 @@ public class RoutePointDAOImpl implements RoutePointDAO {
     }
 
     @Override
-    public List<RoutePoint> getByCourseBetweenStations(Course course, Station station1, Station station2) {
+    public List<RoutePoint> getByCourseAndTrainset(Course course, Trainset trainset) {
+        return sessionFactory.getCurrentSession().createQuery("FROM routePoint WHERE courseID = :course AND trainsetID = :trainset", RoutePoint.class)
+                .setParameter("course", course.getCourseID()).setParameter("trainset", trainset.getTrainsetID()).getResultList();
+    }
+
+    @Override
+    public List<RoutePoint> getByCourseTrainsetAndStations(Course course, Trainset trainset, Station station1, Station station2) {
         return sessionFactory.getCurrentSession()
-                .createQuery("FROM routePoint WHERE courseID = :course AND stationID BETWEEN :id1 AND :id2", RoutePoint.class)
-                .setParameter("course", course.getCourseID())
+                .createQuery("FROM routePoint WHERE courseID = :course AND trainsetID = :trainset AND (stationID BETWEEN :id1 AND :id2)", RoutePoint.class)
+                .setParameter("course", course.getCourseID()).setParameter("trainset", trainset.getTrainsetID())
                 .setParameter("id1", station1.getStationID()).setParameter("id2", station2.getStationID()).getResultList();
     }
 }
