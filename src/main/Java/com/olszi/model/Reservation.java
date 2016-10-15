@@ -17,10 +17,10 @@ public class Reservation implements Serializable{
     @Column(name = "reservationID", nullable = false)
     private Long reservationID;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
     @ManyToOne(targetEntity = Station.class)

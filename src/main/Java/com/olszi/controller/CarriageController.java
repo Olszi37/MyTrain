@@ -7,6 +7,7 @@ import com.olszi.service.CarriageService;
 import com.olszi.service.TrainsetService;
 import com.olszi.system.FileUpload;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.formula.functions.BooleanFunction;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -37,6 +38,16 @@ public class CarriageController {
     private FileUpload fileUpload;
     @Autowired
     private TrainsetService trainsetService;
+
+    @RequestMapping(method = RequestMethod.GET, value = "check/firstClass")
+    public Boolean haveFirstClass(Trainset trainset){
+        List<Carriage> carriages = carriageService.getByTrainset(trainset);
+        for(Carriage carriage : carriages){
+            if(carriage.getType() == CarriageType.CLASS_1 || carriage.getType() == CarriageType.CLASS_1_2 || carriage.getType() == CarriageType.CLASS_1_BAR)
+                return true;
+        }
+        return false;
+    }
 
     @RequestMapping(method = RequestMethod.GET, value = "get/trainset")
     public @ResponseBody List<Carriage> getByTrainset(HttpServletRequest request){

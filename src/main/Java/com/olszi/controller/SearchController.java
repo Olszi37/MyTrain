@@ -3,6 +3,7 @@ package com.olszi.controller;
 import com.olszi.model.RoutePoint;
 import com.olszi.model.SearchResult;
 import com.olszi.model.Station;
+import com.olszi.model.Trainset;
 import com.olszi.service.CourseService;
 import com.olszi.service.RoutePointService;
 import com.olszi.service.StationService;
