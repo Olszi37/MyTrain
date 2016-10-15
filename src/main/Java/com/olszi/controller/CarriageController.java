@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,6 +38,10 @@ public class CarriageController {
     @Autowired
     private TrainsetService trainsetService;
 
+    @RequestMapping(method = RequestMethod.GET, value = "get/trainset")
+    public @ResponseBody List<Carriage> getByTrainset(HttpServletRequest request){
+        return carriageService.getByTrainset(trainsetService.getById(new Long(request.getHeader("trainset"))));
+    }
 
     @RequestMapping(method = RequestMethod.POST, value = "set/file", headers = "Content-Type=multipart/*")
     public @ResponseBody List<Carriage> setCarriagesByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {

@@ -1,10 +1,13 @@
 package com.olszi.dao;
 
 import com.olszi.model.Carriage;
+import com.olszi.model.Trainset;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by MOlszi on 2016-09-07.
@@ -39,5 +42,11 @@ public class CarriageDAOImpl implements CarriageDAO {
     @Override
     public Carriage getById(Long id) {
         return sessionFactory.getCurrentSession().get(Carriage.class, id);
+    }
+
+    @Override
+    public List<Carriage> getByTrainset(Trainset trainset) {
+        return sessionFactory.getCurrentSession().createQuery("FROM carriage WHERE tainsetID = :trainset", Carriage.class)
+                .setParameter("trainset", trainset.getTrainsetID()).getResultList();
     }
 }
