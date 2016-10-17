@@ -6,10 +6,7 @@ import com.olszi.system.FileUpload;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.File;
@@ -21,6 +18,7 @@ import java.util.List;
  * Created by MOlszi on 2016-09-24.
  */
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "trainset")
 public class TrainsetController {

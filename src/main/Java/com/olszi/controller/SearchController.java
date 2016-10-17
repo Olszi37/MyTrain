@@ -7,10 +7,7 @@ import com.olszi.service.CourseService;
 import com.olszi.service.RoutePointService;
 import com.olszi.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -23,6 +20,7 @@ import java.util.stream.Collectors;
  * Created by Siny on 2016-10-01.
  */
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "search")
 public class SearchController {
