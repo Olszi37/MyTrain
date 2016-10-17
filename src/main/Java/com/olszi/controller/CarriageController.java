@@ -7,6 +7,7 @@ import com.olszi.service.CarriageService;
 import com.olszi.service.TrainsetService;
 import com.olszi.system.FileUpload;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.formula.functions.BooleanFunction;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,6 +37,20 @@ public class CarriageController {
     @Autowired
     private TrainsetService trainsetService;
 
+    @RequestMapping(method = RequestMethod.GET, value = "check/firstClass")
+    public Boolean haveFirstClass(Trainset trainset){
+        List<Carriage> carriages = carriageService.getByTrainset(trainset);
+        for(Carriage carriage : carriages){
+            if(carriage.getType() == CarriageType.CLASS_1 || carriage.getType() == CarriageType.CLASS_1_2 || carriage.getType() == CarriageType.CLASS_1_BAR)
+                return true;
+        }
+        return false;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "get/trainset")
+    public @ResponseBody List<Carriage> getByTrainset(HttpServletRequest request){
+        return carriageService.getByTrainset(trainsetService.getById(new Long(request.getHeader("trainset"))));
+    }
 
     @RequestMapping(method = RequestMethod.POST, value = "set/file", headers = "Content-Type=multipart/*")
     public @ResponseBody List<Carriage> setCarriagesByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
