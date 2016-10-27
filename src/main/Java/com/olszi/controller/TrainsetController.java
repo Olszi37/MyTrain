@@ -30,7 +30,7 @@ public class TrainsetController {
     private FileUpload fileUpload;
 
     @RequestMapping(method = RequestMethod.POST, value = "set/file", headers = "Content-Type=multipart/*")
-    public @ResponseBody List<Trainset> setTrainsets(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
+    public @ResponseBody int setTrainsets(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
 
         File file = fileUpload.upload(request);
         List<Trainset> trainsets = getData(file);
@@ -39,7 +39,7 @@ public class TrainsetController {
             trainsetService.create(trainset);
         }
 
-        return trainsets;
+        return trainsets.size();
     }
 
     public List<Trainset> getData(File file) throws IOException, InvalidFormatException {

@@ -33,7 +33,7 @@ public class CourseController {
     private FileUpload fileUpload;
 
     @RequestMapping(method = RequestMethod.POST, value = "set/file", headers = "Content-Type=multipart/*")
-    public @ResponseBody List<Course> setCoursesByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
+    public @ResponseBody int setCoursesByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
 
         File file = fileUpload.upload(request);
         List<Course> courses = getDataFromFile(file);
@@ -42,7 +42,7 @@ public class CourseController {
             courseService.create(course);
         }
 
-        return courses;
+        return courses.size();
     }
 
     public List<Course> getDataFromFile(File file) throws IOException, InvalidFormatException {

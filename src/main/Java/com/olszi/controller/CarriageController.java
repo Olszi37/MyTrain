@@ -53,7 +53,7 @@ public class CarriageController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "set/file", headers = "Content-Type=multipart/*")
-    public @ResponseBody List<Carriage> setCarriagesByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
+    public @ResponseBody int setCarriagesByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
 
         File file = fileUpload.upload(request);
         List<Carriage> carriages = getDataFromFile(file);
@@ -62,7 +62,7 @@ public class CarriageController {
             carriageService.create(carriage);
         }
 
-        return carriages;
+        return carriages.size();
     }
 
     public List<Carriage> getDataFromFile(File file) throws IOException, InvalidFormatException {

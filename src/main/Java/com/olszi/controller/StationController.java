@@ -12,7 +12,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by MOlszi on 2016-09-10.
@@ -29,13 +31,13 @@ public class StationController {
     @Autowired
     private FileUpload fileUpload;
 
-    @RequestMapping(value = "get/all", method = RequestMethod.GET)
+    @RequestMapping(value = "get/all", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody List<Station> getAllStations(){
         return stationService.getAll();
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "set/file", headers = "Content-Type=multipart/*")
-    public @ResponseBody List<Station> setStationsByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
+    public @ResponseBody int setStationsByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
 
         File file = fileUpload.upload(request);
         List<Station> stations = getFileData(file);
@@ -44,7 +46,7 @@ public class StationController {
             stationService.create(station);
         }
 
-        return stations;
+        return stations.size();
     }
 
     public List<Station> getFileData(File file) throws IOException, InvalidFormatException {
