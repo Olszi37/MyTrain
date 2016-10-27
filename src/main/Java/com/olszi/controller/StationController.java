@@ -61,6 +61,7 @@ public class StationController {
             {
                 Station station = new Station();
 
+                station.setStationID((long) row.getCell(0).getNumericCellValue());
                 station.setName(row.getCell(1).getStringCellValue());
                 station.setProvince(row.getCell(2).getStringCellValue());
 

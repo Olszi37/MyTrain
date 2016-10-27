@@ -73,6 +73,7 @@ public class RoutePointController {
 
                 RoutePoint  point = new RoutePoint();
 
+                point.setPointID((long) row.getCell(0).getNumericCellValue());
                 point.setCourse(courses.get((int) row.getCell(1).getNumericCellValue() - 1 ));
                 point.setStation(stations.get((int) row.getCell(2).getNumericCellValue() - 1));
 

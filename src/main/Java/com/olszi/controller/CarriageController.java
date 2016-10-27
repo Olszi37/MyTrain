@@ -78,6 +78,7 @@ public class CarriageController {
             {
                 Carriage carriage = new Carriage();
 
+                carriage.setCarriageID((long) row.getCell(0).getNumericCellValue());
                 carriage.setTrainset(trainsets.get((int) row.getCell(1).getNumericCellValue() - 1));
                 carriage.setNumber((int) row.getCell(2).getNumericCellValue());
                 carriage.setType(CarriageType.values()[(int) row.getCell(3).getNumericCellValue()]);

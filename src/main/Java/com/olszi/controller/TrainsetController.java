@@ -54,6 +54,7 @@ public class TrainsetController {
             if(row.getRowNum() != 0){
                 Trainset trainset = new Trainset();
 
+                trainset.setTrainsetID((long) row.getCell(0).getNumericCellValue());
                 trainset.setNumber(row.getCell(1).getStringCellValue());
 
                 if(row.getCell(2) == null)
