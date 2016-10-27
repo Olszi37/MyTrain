@@ -12,22 +12,25 @@ import java.io.Serializable;
 public class Trainset implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "trainsetID", nullable = false)
+    @Column(nullable = false)
     private Long trainsetID;
 
-    @Column(name = "number", nullable = false)
+    @Column(nullable = false)
     private String number;
 
-    @Column(name = "name")
     private String name;
 
-    public Trainset(String number, String name) {
+    public Trainset() {
+    }
+
+    public Trainset(Long trainsetID, String number, String name) {
+        this.trainsetID = trainsetID;
         this.number = number;
         this.name = name;
     }
 
-    public Trainset() {
+    public void setTrainsetID(Long trainsetID) {
+        this.trainsetID = trainsetID;
     }
 
     public Long getTrainsetID() {

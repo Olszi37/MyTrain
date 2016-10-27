@@ -12,31 +12,35 @@ import java.io.Serializable;
 public class Carriage implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "carriageID", nullable = false)
+    @Column(nullable = false)
     private Long carriageID;
 
     @ManyToOne(targetEntity = Trainset.class)
     @JoinColumn(name = "trainsetID", nullable = false)
     private Trainset trainset;
 
-    @Column(name = "number", nullable = false)
+    @Column(nullable = false)
     private int number;
 
-    @Column(name = "type", nullable = false)
+    @Column(nullable = false)
     private CarriageType type;
 
-    @Column(name = "numberOfSeats", nullable = false)
+    @Column(nullable = false)
     private int numberOfSeats;
 
-    public Carriage(Trainset trainset, int number, CarriageType type, int numberOfSeats) {
+    public Carriage() {
+    }
+
+    public Carriage(Long carriageID, Trainset trainset, int number, CarriageType type, int numberOfSeats) {
+        this.carriageID = carriageID;
         this.trainset = trainset;
         this.number = number;
         this.type = type;
         this.numberOfSeats = numberOfSeats;
     }
 
-    public Carriage() {
+    public void setCarriageID(Long carriageID) {
+        this.carriageID = carriageID;
     }
 
     public Long getCarriageID() {

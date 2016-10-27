@@ -12,22 +12,26 @@ import java.io.Serializable;
 public class Station implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "stationID", nullable = false)
+    @Column(nullable = false)
     private Long stationID;
 
-    @Column(name = "name", nullable = false)
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "province", nullable = false)
+    @Column(nullable = false)
     private String province;
 
     public Station() {
     }
 
-    public Station(String name, String province) {
+    public Station(Long stationID, String name, String province) {
+        this.stationID = stationID;
         this.name = name;
         this.province = province;
+    }
+
+    public void setStationID(Long stationID) {
+        this.stationID = stationID;
     }
 
     public Long getStationID() {

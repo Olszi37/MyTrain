@@ -13,8 +13,7 @@ import java.time.LocalTime;
 public class RoutePoint implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "pointID", nullable = false)
+    @Column(nullable = false)
     private Long pointID;
 
     @ManyToOne(targetEntity = Course.class)
@@ -25,20 +24,22 @@ public class RoutePoint implements Serializable{
     @JoinColumn(name = "stationID", nullable = false)
     private Station station;
 
-    @Column(name = "arrival")
     private LocalTime arrival;
 
-    @Column(name = "departure")
     private LocalTime departure;
 
-    @Column(name = "distance", nullable = false)
+    @Column(nullable = false)
     private int distance;
 
     @ManyToOne(targetEntity = Trainset.class)
     @JoinColumn(name = "trainsetID", nullable = false)
     private Trainset trainset;
 
-    public RoutePoint(Course course, Station station, LocalTime arrival, LocalTime departure, int distance, Trainset trainset) {
+    public RoutePoint() {
+    }
+
+    public RoutePoint(Long pointID, Course course, Station station, LocalTime arrival, LocalTime departure, int distance, Trainset trainset) {
+        this.pointID = pointID;
         this.course = course;
         this.station = station;
         this.arrival = arrival;
@@ -47,7 +48,8 @@ public class RoutePoint implements Serializable{
         this.trainset = trainset;
     }
 
-    public RoutePoint() {
+    public void setPointID(Long pointID) {
+        this.pointID = pointID;
     }
 
     public Long getPointID() {

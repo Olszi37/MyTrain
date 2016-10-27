@@ -13,8 +13,7 @@ import java.time.LocalTime;
 public class Course implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "courseID", nullable = false)
+    @Column(nullable = false)
     private Long courseID;
 
     @ManyToOne(targetEntity = Station.class, optional = false)
@@ -22,19 +21,24 @@ public class Course implements Serializable{
     private Station from;
 
     @ManyToOne(targetEntity = Station.class, optional = false)
-    @JoinColumn(name = "destiny", nullable =  false)
+    @JoinColumn(nullable =  false)
     private Station destiny;
 
-    @Column(name = "description", nullable = false)
+    @Column(nullable = false)
     private String description;
 
-    public Course(Station from, Station destiny, String description) {
+    public Course() {
+    }
+
+    public Course(Long courseID, Station from, Station destiny, String description) {
+        this.courseID = courseID;
         this.from = from;
         this.destiny = destiny;
         this.description = description;
     }
 
-    public Course() {
+    public void setCourseID(Long courseID) {
+        this.courseID = courseID;
     }
 
     public Long getCourseID() {
