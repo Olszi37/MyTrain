@@ -52,7 +52,7 @@ public class CarriageController {
         return carriageService.getByTrainset(trainsetService.getById(new Long(request.getHeader("trainset"))));
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "set/file", headers = "Content-Type=multipart/*")
+    @RequestMapping(method = RequestMethod.POST, value = "set/file", headers = "Content-Type=multipart/form-data")
     public @ResponseBody int setCarriagesByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
 
         File file = fileUpload.upload(request);

@@ -29,7 +29,7 @@ public class TrainsetController {
     @Autowired
     private FileUpload fileUpload;
 
-    @RequestMapping(method = RequestMethod.POST, value = "set/file", headers = "Content-Type=multipart/*")
+    @RequestMapping(method = RequestMethod.POST, value = "set/file", headers = "Content-Type=multipart/form-data")
     public @ResponseBody int setTrainsets(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
 
         File file = fileUpload.upload(request);
