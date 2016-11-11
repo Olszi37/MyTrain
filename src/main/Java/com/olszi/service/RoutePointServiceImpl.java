@@ -68,4 +68,14 @@ public class RoutePointServiceImpl implements RoutePointService {
     public List<RoutePoint> getByCourseTrainsetAndStations(Course course, Trainset trainset, Station station1, Station station2) {
         return routePointDAO.getByCourseTrainsetAndStations(course, trainset, station1, station2);
     }
+
+    @Override
+    public int rowCount() {
+        return routePointDAO.rowCount();
+    }
+
+    @Override
+    public void clearTable() {
+        routePointDAO.clearTable();
+    }
 }

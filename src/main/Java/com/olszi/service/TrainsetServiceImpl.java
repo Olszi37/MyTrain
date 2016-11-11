@@ -45,4 +45,14 @@ public class TrainsetServiceImpl implements TrainsetService {
     public List<Trainset> getAll() {
         return trainsetDAO.getAll();
     }
+
+    @Override
+    public int rowCount() {
+        return trainsetDAO.rowCount();
+    }
+
+    @Override
+    public void clearTable() {
+        trainsetDAO.clearTable();
+    }
 }

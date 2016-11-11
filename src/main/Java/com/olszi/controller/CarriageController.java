@@ -37,6 +37,16 @@ public class CarriageController {
     @Autowired
     private TrainsetService trainsetService;
 
+    @RequestMapping(method = RequestMethod.GET, value = "get/size")
+    public @ResponseBody int getTableSize(){
+        return carriageService.rowCount();
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "clear")
+    public void clearTable(){
+        carriageService.clearTable();
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "check/firstClass")
     public Boolean haveFirstClass(Trainset trainset){
         List<Carriage> carriages = carriageService.getByTrainset(trainset);

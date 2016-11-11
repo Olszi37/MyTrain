@@ -32,6 +32,16 @@ public class CourseController {
     @Autowired
     private FileUpload fileUpload;
 
+    @RequestMapping(method = RequestMethod.GET, value = "get/size")
+    public @ResponseBody int getTableSize(){
+        return courseService.rowCount();
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value="clear")
+    public void clearTable(){
+        courseService.clearTable();
+    }
+
     @RequestMapping(method = RequestMethod.POST, value = "set/file", headers = "Content-Type=multipart/form-data")
     public @ResponseBody int setCoursesByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
 

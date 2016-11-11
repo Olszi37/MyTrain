@@ -45,4 +45,14 @@ public class StationServiceImpl implements StationService {
     public List<Station> getAll() {
         return stationDAO.getAll();
     }
+
+    @Override
+    public int rowCount() {
+        return stationDAO.rowCount();
+    }
+
+    @Override
+    public void clearTable() {
+        stationDAO.clearTable();
+    }
 }

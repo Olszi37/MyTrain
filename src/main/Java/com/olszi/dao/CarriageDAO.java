@@ -19,4 +19,8 @@ public interface CarriageDAO {
     public Carriage getById(Long id);
 
     public List<Carriage> getByTrainset(Trainset trainset);
+
+    public int rowCount();
+
+    public void clearTable();
 }

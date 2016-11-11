@@ -18,4 +18,8 @@ public interface CourseDAO {
     public Course getById(Long id);
 
     public List<Course> getAll();
+
+    public int rowCount();
+
+    public void clearTable();
 }

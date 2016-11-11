@@ -36,6 +36,16 @@ public class StationController {
         return stationService.getAll();
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "get/size")
+    public @ResponseBody int getTableSize(){
+        return stationService.rowCount();
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "clear")
+    public void clearTable(){
+        stationService.clearTable();
+    }
+
     @RequestMapping(method = RequestMethod.POST, value = "set/file", headers = "Content-Type=multipart/form-data")
     public @ResponseBody int setStationsByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
 

@@ -18,4 +18,8 @@ public interface StationService {
     public Station getById(Long id);
 
     public List<Station> getAll();
+
+    public int rowCount();
+
+    public void clearTable();
 }

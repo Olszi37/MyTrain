@@ -47,4 +47,14 @@ public class StationDAOImpl implements StationDAO {
     public List<Station> getAll() {
         return sessionFactory.getCurrentSession().createQuery("FROM station", Station.class).getResultList();
     }
+
+    @Override
+    public int rowCount() {
+        return (int) sessionFactory.getCurrentSession().createQuery("SELECT COUNT(*) FROM station").uniqueResult();
+    }
+
+    @Override
+    public void clearTable() {
+        sessionFactory.getCurrentSession().createQuery("DELETE FROM station");
+    }
 }

@@ -46,4 +46,14 @@ public class CarriageServiceImpl implements CarriageService {
     public List<Carriage> getByTrainset(Trainset trainset) {
         return carriageDAO.getByTrainset(trainset);
     }
+
+    @Override
+    public int rowCount() {
+        return carriageDAO.rowCount();
+    }
+
+    @Override
+    public void clearTable() {
+        carriageDAO.clearTable();
+    }
 }

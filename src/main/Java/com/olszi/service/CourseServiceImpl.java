@@ -45,4 +45,14 @@ public class CourseServiceImpl implements CourseService {
     public List<Course> getAll() {
         return courseDAO.getAll();
     }
+
+    @Override
+    public int rowCount() {
+        return courseDAO.rowCount();
+    }
+
+    @Override
+    public void clearTable() {
+        courseDAO.clearTable();
+    }
 }

@@ -29,4 +29,8 @@ public interface RoutePointDAO{
     public List<RoutePoint> getByCourseAndTrainset(Course course, Trainset trainset);
 
     public List<RoutePoint> getByCourseTrainsetAndStations(Course course, Trainset trainset, Station station1, Station station2);
+
+    public int rowCount();
+
+    public void clearTable();
 }

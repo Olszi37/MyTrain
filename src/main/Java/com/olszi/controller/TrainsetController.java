@@ -29,6 +29,16 @@ public class TrainsetController {
     @Autowired
     private FileUpload fileUpload;
 
+    @RequestMapping(method = RequestMethod.GET, value="get/size")
+    public @ResponseBody int getTableSize(){
+        return trainsetService.rowCount();
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "clear")
+    public void clearTable(){
+        trainsetService.clearTable();
+    }
+
     @RequestMapping(method = RequestMethod.POST, value = "set/file", headers = "Content-Type=multipart/form-data")
     public @ResponseBody int setTrainsets(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
 

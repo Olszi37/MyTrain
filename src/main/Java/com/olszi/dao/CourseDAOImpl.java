@@ -47,4 +47,14 @@ public class CourseDAOImpl implements CourseDAO {
     public List<Course> getAll() {
         return sessionFactory.getCurrentSession().createQuery("FROM course", Course.class).getResultList();
     }
+
+    @Override
+    public int rowCount() {
+        return (int) sessionFactory.getCurrentSession().createQuery("SELECT COUNT(*) FROM course").uniqueResult();
+    }
+
+    @Override
+    public void clearTable() {
+        sessionFactory.getCurrentSession().createQuery("DELETE FROM course");
+    }
 }

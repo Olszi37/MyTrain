@@ -49,4 +49,14 @@ public class CarriageDAOImpl implements CarriageDAO {
         return sessionFactory.getCurrentSession().createQuery("FROM carriage WHERE tainsetID = :trainset", Carriage.class)
                 .setParameter("trainset", trainset.getTrainsetID()).getResultList();
     }
+
+    @Override
+    public int rowCount() {
+        return (int) sessionFactory.getCurrentSession().createQuery("SELECT COUNT(*) FROM carriage").uniqueResult();
+    }
+
+    @Override
+    public void clearTable() {
+        sessionFactory.getCurrentSession().createQuery("DELETE FROM carriage");
+    }
 }

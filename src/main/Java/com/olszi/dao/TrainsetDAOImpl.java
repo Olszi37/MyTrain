@@ -47,4 +47,14 @@ public class TrainsetDAOImpl implements TrainsetDAO {
     public List<Trainset> getAll() {
         return sessionFactory.getCurrentSession().createQuery("FROM trainset", Trainset.class).getResultList();
     }
+
+    @Override
+    public int rowCount() {
+        return ((Long)sessionFactory.getCurrentSession().createQuery("SELECT COUNT(*) FROM trainset").uniqueResult()).intValue();
+    }
+
+    @Override
+    public void clearTable() {
+        sessionFactory.getCurrentSession().createQuery("DELETE FROM trainset");
+    }
 }

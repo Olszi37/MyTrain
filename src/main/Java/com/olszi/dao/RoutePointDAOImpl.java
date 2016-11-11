@@ -78,4 +78,14 @@ public class RoutePointDAOImpl implements RoutePointDAO {
                 .setParameter("course", course.getCourseID()).setParameter("trainset", trainset.getTrainsetID())
                 .setParameter("id1", station1.getStationID()).setParameter("id2", station2.getStationID()).getResultList();
     }
+
+    @Override
+    public int rowCount() {
+        return (int) sessionFactory.getCurrentSession().createQuery("SELECT COUNT(*) FROM routePoint").uniqueResult();
+    }
+
+    @Override
+    public void clearTable() {
+        sessionFactory.getCurrentSession().createQuery("DELETE FROM routePoint");
+    }
 }

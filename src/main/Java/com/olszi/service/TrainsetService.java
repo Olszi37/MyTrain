@@ -18,4 +18,8 @@ public interface TrainsetService {
     public Trainset getById(Long id);
 
     public List<Trainset> getAll();
+
+    public int rowCount();
+
+    public void clearTable();
 }
