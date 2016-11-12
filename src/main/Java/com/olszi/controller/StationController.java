@@ -47,7 +47,7 @@ public class StationController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "set/file", headers = "Content-Type=multipart/form-data")
-    public @ResponseBody int setStationsByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
+    public int setStationsByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
 
         File file = fileUpload.upload(request);
         List<Station> stations = getFileData(file);

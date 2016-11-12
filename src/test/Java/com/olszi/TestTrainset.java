@@ -46,21 +46,21 @@ public class TestTrainset {
         assertEquals(4, trainsetService.rowCount());
     }
 
-    @Test
-    @Transactional
-    public void testClearTable(){
-        List<Trainset> trainsetList = new ArrayList<>();
-        trainsetList.add(new Trainset(new Long(800), "TLK 80011/1", "Mateusz"));
-        trainsetList.add(new Trainset(new Long(801), "TLK 80011/2", "Morfeusz"));
-        trainsetList.add(new Trainset(new Long(802), "TLK 80011/3", "Magdalena"));
-        trainsetList.add(new Trainset(new Long(803), "TLK 80011/4", "Michal"));
-
-        for(Trainset trainset : trainsetList){
-            trainsetService.create(trainset);
-        }
-
-        trainsetService.clearTable();
-
-        assertEquals(0, trainsetService.rowCount());
-    }
+//    @Test
+//    @Transactional
+//    public void testClearTable(){
+//        List<Trainset> trainsetList = new ArrayList<>();
+//        trainsetList.add(new Trainset(new Long(800), "TLK 80011/1", "Mateusz"));
+//        trainsetList.add(new Trainset(new Long(801), "TLK 80011/2", "Morfeusz"));
+//        trainsetList.add(new Trainset(new Long(802), "TLK 80011/3", "Magdalena"));
+//        trainsetList.add(new Trainset(new Long(803), "TLK 80011/4", "Michal"));
+//
+//        for(Trainset trainset : trainsetList){
+//            trainsetService.create(trainset);
+//        }
+//
+//        trainsetService.clearTable();
+//
+//        assertEquals(0, trainsetService.rowCount());
+//    }
 }
