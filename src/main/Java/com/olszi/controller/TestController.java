@@ -18,7 +18,7 @@ import java.io.UnsupportedEncodingException;
 public class TestController {
 
     @RequestMapping(method = RequestMethod.GET, value = "test")
-    public @ResponseBody ResponseEntity testRest(){
+    public ResponseEntity testRest(){
         return new ResponseEntity<String>("App is up", HttpStatus.OK);
     }
 }

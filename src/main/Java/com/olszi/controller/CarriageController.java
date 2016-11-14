@@ -38,7 +38,7 @@ public class CarriageController {
     private TrainsetService trainsetService;
 
     @RequestMapping(method = RequestMethod.GET, value = "get/size")
-    public @ResponseBody int getTableSize(){
+    public int getTableSize(){
         return carriageService.rowCount();
     }
 
@@ -58,12 +58,12 @@ public class CarriageController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "get/trainset")
-    public @ResponseBody List<Carriage> getByTrainset(HttpServletRequest request){
+    public List<Carriage> getByTrainset(HttpServletRequest request){
         return carriageService.getByTrainset(trainsetService.getById(new Long(request.getHeader("trainset"))));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "set/file", headers = "Content-Type=multipart/form-data")
-    public @ResponseBody int setCarriagesByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
+    public int setCarriagesByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
 
         File file = fileUpload.upload(request);
         List<Carriage> carriages = getDataFromFile(file);

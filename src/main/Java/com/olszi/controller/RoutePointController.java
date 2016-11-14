@@ -46,7 +46,7 @@ public class RoutePointController {
     private FileUpload fileUpload;
 
     @RequestMapping(method = RequestMethod.GET, value = "get/size")
-    public @ResponseBody int getTableSize(){
+    public int getTableSize(){
         return routePointService.rowCount();
     }
 
@@ -56,7 +56,7 @@ public class RoutePointController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "set/file", headers = "Content-Type=multipart/form-data")
-    public @ResponseBody int setRoutePointsByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
+    public int setRoutePointsByFile(MultipartHttpServletRequest request) throws IOException, InvalidFormatException {
 
         File file = fileUpload.upload(request);
         List<RoutePoint> points = getDataFromFile(file);

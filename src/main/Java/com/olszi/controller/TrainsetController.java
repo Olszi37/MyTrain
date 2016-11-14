@@ -30,7 +30,7 @@ public class TrainsetController {
     private FileUpload fileUpload;
 
     @RequestMapping(method = RequestMethod.GET, value="get/size")
-    public @ResponseBody int getTableSize(){
+    public int getTableSize(){
         return trainsetService.rowCount();
     }
 

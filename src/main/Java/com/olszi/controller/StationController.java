@@ -32,12 +32,12 @@ public class StationController {
     private FileUpload fileUpload;
 
     @RequestMapping(value = "get/all", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody List<Station> getAllStations(){
+    public List<Station> getAllStations(){
         return stationService.getAll();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "get/size")
-    public @ResponseBody int getTableSize(){
+    public int getTableSize(){
         return stationService.rowCount();
     }
 

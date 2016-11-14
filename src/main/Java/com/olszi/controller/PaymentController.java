@@ -22,7 +22,7 @@ public class PaymentController {
     @Autowired
     private ReservationService reservationService;
 
-    public @ResponseBody Payment create(HttpServletRequest request){
+    public Payment create(HttpServletRequest request){
 
         Payment payment = new Payment();
 

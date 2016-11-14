@@ -25,7 +25,7 @@ public class ReservationController {
     private CarriageService carriageService;
 
     @RequestMapping(method = RequestMethod.POST, value = "create")
-    public @ResponseBody Reservation create(HttpServletRequest request){
+    public Reservation create(HttpServletRequest request){
 
         Reservation reservation = new Reservation();
 

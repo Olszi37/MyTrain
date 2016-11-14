@@ -34,7 +34,7 @@ public class SearchController {
     private CourseService courseService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public @ResponseBody List<SearchResult> searchConnections(HttpServletRequest request){
+    public List<SearchResult> searchConnections(HttpServletRequest request){
         Station initialStop = stationService.getById(new Long(request.getHeader("initialStop")));
         Station finalStop = stationService.getById(new Long(request.getHeader("finalStop")));
 
