@@ -52,7 +52,7 @@ public class CarriageDAOImpl implements CarriageDAO {
 
     @Override
     public int rowCount() {
-        return (int) sessionFactory.getCurrentSession().createQuery("SELECT COUNT(*) FROM carriage").uniqueResult();
+        return ((Long)sessionFactory.getCurrentSession().createQuery("SELECT COUNT(*) FROM carriage").uniqueResult()).intValue();
     }
 
     @Override

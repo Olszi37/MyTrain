@@ -50,7 +50,7 @@ public class CourseDAOImpl implements CourseDAO {
 
     @Override
     public int rowCount() {
-        return (int) sessionFactory.getCurrentSession().createQuery("SELECT COUNT(*) FROM course").uniqueResult();
+        return ((Long)sessionFactory.getCurrentSession().createQuery("SELECT COUNT(*) FROM course").uniqueResult()).intValue();
     }
 
     @Override

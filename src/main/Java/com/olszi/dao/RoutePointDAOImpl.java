@@ -81,7 +81,7 @@ public class RoutePointDAOImpl implements RoutePointDAO {
 
     @Override
     public int rowCount() {
-        return (int) sessionFactory.getCurrentSession().createQuery("SELECT COUNT(*) FROM routePoint").uniqueResult();
+        return ((Long)sessionFactory.getCurrentSession().createQuery("SELECT COUNT(*) FROM routePoint").uniqueResult()).intValue();
     }
 
     @Override

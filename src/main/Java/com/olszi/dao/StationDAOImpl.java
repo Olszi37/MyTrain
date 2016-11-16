@@ -50,7 +50,7 @@ public class StationDAOImpl implements StationDAO {
 
     @Override
     public int rowCount() {
-        return (int) sessionFactory.getCurrentSession().createQuery("SELECT COUNT(*) FROM station").uniqueResult();
+        return ((Long)sessionFactory.getCurrentSession().createQuery("SELECT COUNT(*) FROM station").uniqueResult()).intValue();
     }
 
     @Override
