@@ -57,6 +57,6 @@ public class CarriageDAOImpl implements CarriageDAO {
 
     @Override
     public void clearTable() {
-        sessionFactory.getCurrentSession().createQuery("DELETE FROM carriage");
+        sessionFactory.getCurrentSession().createQuery("DELETE FROM carriage").executeUpdate();
     }
 }

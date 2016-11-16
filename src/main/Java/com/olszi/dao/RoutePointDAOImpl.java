@@ -86,6 +86,6 @@ public class RoutePointDAOImpl implements RoutePointDAO {
 
     @Override
     public void clearTable() {
-        sessionFactory.getCurrentSession().createQuery("DELETE FROM routePoint");
+        sessionFactory.getCurrentSession().createQuery("DELETE FROM routePoint").executeUpdate();
     }
 }

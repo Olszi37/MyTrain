@@ -55,6 +55,6 @@ public class CourseDAOImpl implements CourseDAO {
 
     @Override
     public void clearTable() {
-        sessionFactory.getCurrentSession().createQuery("DELETE FROM course");
+        sessionFactory.getCurrentSession().createQuery("DELETE FROM course").executeUpdate();
     }
 }

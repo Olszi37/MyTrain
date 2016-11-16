@@ -55,6 +55,6 @@ public class StationDAOImpl implements StationDAO {
 
     @Override
     public void clearTable() {
-        sessionFactory.getCurrentSession().createQuery("DELETE FROM station");
+        sessionFactory.getCurrentSession().createQuery("DELETE FROM station").executeUpdate();
     }
 }

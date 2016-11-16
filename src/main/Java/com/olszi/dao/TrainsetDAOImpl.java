@@ -55,6 +55,6 @@ public class TrainsetDAOImpl implements TrainsetDAO {
 
     @Override
     public void clearTable() {
-        sessionFactory.getCurrentSession().createQuery("DELETE FROM trainset");
+        sessionFactory.getCurrentSession().createQuery("DELETE FROM trainset").executeUpdate();
     }
 }
