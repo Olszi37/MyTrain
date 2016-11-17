@@ -68,6 +68,9 @@ public class TestStation {
     @Test
     @Transactional
     public void testGetAll(){
+
+        int before = service.rowCount();
+
         List<Station> stations = new ArrayList<>();
         stations.add(new Station((long) 801, "Lublin", "Lubelskie"));
         stations.add(new Station((long) 802, "Kraków głowny", "Małopolskie"));
@@ -77,6 +80,9 @@ public class TestStation {
             service.create(station);
         }
 
-        assertEquals(3, service.getAll().size());
+        if(before == 0)
+            assertEquals(3, service.getAll().size());
+        else
+            assertEquals(3 + before, service.getAll().size());
     }
 }

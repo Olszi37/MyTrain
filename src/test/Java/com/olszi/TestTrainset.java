@@ -33,6 +33,9 @@ public class TestTrainset {
     @Test
     @Transactional
     public void testRowCount(){
+
+        int before = trainsetService.getAll().size();
+
         List<Trainset> trainsetList = new ArrayList<>();
         trainsetList.add(new Trainset(new Long(800), "TLK 80011/1", "Mateusz"));
         trainsetList.add(new Trainset(new Long(801), "TLK 80011/2", "Morfeusz"));
@@ -43,7 +46,10 @@ public class TestTrainset {
             trainsetService.create(trainset);
         }
 
-        assertEquals(4, trainsetService.rowCount());
+        if(before == 0)
+            assertEquals(4, trainsetService.rowCount());
+        else
+            assertEquals(before + 4, trainsetService.rowCount());
     }
 
     @Test
@@ -58,12 +64,8 @@ public class TestTrainset {
         for(Trainset trainset : trainsetList){
             trainsetService.create(trainset);
         }
-        try{
-            trainsetService.clearTable();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
 
+        trainsetService.clearTable();
 
         assertEquals(0, trainsetService.rowCount());
     }
