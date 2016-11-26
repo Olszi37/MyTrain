@@ -1,10 +1,7 @@
 package com.olszi.model;
 
-import org.springframework.cglib.core.Local;
-
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 /**
