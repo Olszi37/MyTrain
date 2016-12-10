@@ -33,7 +33,7 @@ public class SearchController {
     @Autowired
     private CourseService courseService;
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.GET)
     public List<SearchResult> searchConnections(HttpServletRequest request){
         Station initialStop = stationService.getById(new Long(request.getHeader("initialStop")));
         Station finalStop = stationService.getById(new Long(request.getHeader("finalStop")));
