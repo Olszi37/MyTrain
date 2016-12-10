@@ -1,12 +1,10 @@
 package com.olszi.controller;
 
-import com.olszi.model.RoutePoint;
-import com.olszi.model.SearchResult;
-import com.olszi.model.Station;
-import com.olszi.model.Trainset;
+import com.olszi.model.*;
 import com.olszi.service.CourseService;
 import com.olszi.service.RoutePointService;
 import com.olszi.service.StationService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,10 +31,11 @@ public class SearchController {
     @Autowired
     private CourseService courseService;
 
-    @RequestMapping(method = RequestMethod.POST)
-    public List<SearchResult> searchConnections(HttpServletRequest request){
-        Station initialStop = stationService.getById(new Long(request.getHeader("initialStop")));
-        Station finalStop = stationService.getById(new Long(request.getHeader("finalStop")));
+    @RequestMapping(method = RequestMethod.POST, headers = "Content-Type: application/json")
+    public List<SearchResult> searchConnections(SearchRequest request){
+
+        Station initialStop = stationService.getById(new Long(request.getInitialStop()));
+        Station finalStop = stationService.getById(new Long(request.getFinalStop()));
 
         List<RoutePoint> initialStopResults = routePointService.getInitialStations(initialStop);
         List<RoutePoint> finalStopResults = routePointService.getFinalStations(finalStop);
